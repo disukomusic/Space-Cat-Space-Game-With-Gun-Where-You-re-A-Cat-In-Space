@@ -20,26 +20,13 @@ public class PlayerMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
         
         _rigidbody.velocity = new Vector3(
-            Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime * 2, 
+            horizontal * movementSpeed * Time.deltaTime * 2, 
             _rigidbody.velocity.y, 
-            Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime * 2);
+            vertical * movementSpeed * Time.deltaTime * 2);
 
-    }
-
-    void Update()
-    {
-
-            if(Input.GetButtonDown("Jump") && grounded)
-            {
-                _rigidbody.velocity = new Vector3(0,jumpForce,0);
-            }
-            else if(Input.GetKeyDown(KeyCode.Space) && grounded)
-            {
-                _rigidbody.velocity = new Vector3(0,jumpForce,0);
-            }
     }
 }
