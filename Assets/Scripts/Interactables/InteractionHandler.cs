@@ -13,4 +13,5 @@ public class InteractionHandler : MonoBehaviour
         // or to react differently if an enemy picks one up
         interactable.Interact();
     }
+
 }
