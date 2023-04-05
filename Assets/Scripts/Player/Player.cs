@@ -1,19 +1,45 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    private Transform _transform;
+    public static Player Instance;
     
-    public float score;
-    void Start()
+    private void Awake()
     {
-        _transform = GetComponent<Transform>();
+        Instance = this;
+    }
+
+    public float health;
+    public float score;
+    public TMP_Text HealthText;
+    public TMP_Text ScoreText;
+
+    public int weapon;
+
+    public void SetWeapon(int id)
+    {
+        Debug.Log("removed weapon" + weapon);
+        weapon = id;
+        Debug.Log("equipped weapon" + weapon);
+    }
+    public void IncreaseHealth(int value)
+    {
+        health += value;
+        HealthText.text = $"HP: {health}";
+    }
+    
+    public void IncreaseScore(int value)
+    {
+        score += value;
+        ScoreText.text = $"HP: {score}";
     }
     public void ResetPlayerPosition()
     {
-        _transform.position = new Vector3(0, 0f, 0f);
+        transform.position = new Vector3(0, 0f, 0f);
     }
 }
