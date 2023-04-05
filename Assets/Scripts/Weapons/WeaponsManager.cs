@@ -31,6 +31,7 @@ public class WeaponsManager : MonoBehaviour
 
     private void BalancePower()
     {
+        //there might be a better way to do this... map range???
         fireRate = (power - (power * 0.7f)) * 0.1f;
     }
 
