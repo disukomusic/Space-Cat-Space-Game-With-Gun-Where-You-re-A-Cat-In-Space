@@ -32,6 +32,9 @@ public class InventoryItemController : MonoBehaviour
             case Item.ItemType.Weapon:
                 WeaponsManager.Instance.SetWeapon(item);
                 break;
+            case Item.ItemType.Trophy:
+                Debug.Log("weeee trophy time");
+                break;
             case Item.ItemType.Test:
                 Debug.Log("test item what the fuck");
                 RemoveItem();

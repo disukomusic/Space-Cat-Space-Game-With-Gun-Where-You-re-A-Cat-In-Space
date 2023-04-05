@@ -1,25 +1,24 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     public float power;
     public float fireRate;
-    public float speed = 10f;
+    public float speed = 1000f;
     private Rigidbody _rigidbody;
     
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        //this is jank as hell and barely works
-        //ask hunter or bill about it because im losing it its too late for this
-        Vector3 screenPoint = Camera.main.ScreenToWorldPoint( Input.mousePosition );
-        Vector3 cursorRay = Camera.main.ScreenPointToRay( Input.mousePosition ).direction;
-        Vector3 flatAimTarget = screenPoint  + cursorRay  / Mathf.Abs( cursorRay.y ) * Mathf.Abs( screenPoint .y - Player.Instance.transform.position.y );
-        _rigidbody.AddRelativeForce(flatAimTarget);
+       
+        //we can either add some height offset to the aim target or we can flatten the direction after to make it ... flat
+        Vector3 flatAimTarget = Hunter.Utility.GetMousePositionOnGroundPlane() - transform.position;
+        flatAimTarget = new Vector3(flatAimTarget.x, 0, flatAimTarget.z).normalized;
+        
+        transform.rotation = Quaternion.LookRotation(flatAimTarget);
+        _rigidbody.AddForce(flatAimTarget * speed);
+        Debug.Log(flatAimTarget);
     }
 }

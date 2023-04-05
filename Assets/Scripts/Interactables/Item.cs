@@ -6,6 +6,7 @@ public class Item : ScriptableObject
 {
     public int id;
     public string itemName;
+    public string itemDescription;
     public float value;
     public Sprite icon;
     public ItemType itemType;
@@ -16,6 +17,7 @@ public class Item : ScriptableObject
         HealthUp,
         ScoreUp,
         Weapon,
+        Trophy,
         AmmoUp,
     }
 }

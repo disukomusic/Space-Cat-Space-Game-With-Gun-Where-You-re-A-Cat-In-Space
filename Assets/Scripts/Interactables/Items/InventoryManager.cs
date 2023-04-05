@@ -39,7 +39,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        cleanList();
+        CleanList();
 
         foreach (var item in Items)
         {
@@ -47,9 +47,11 @@ public class InventoryManager : MonoBehaviour
             var itemName = obj.transform.Find("ItemName").GetComponent<TMP_Text>();
             var itemIcon = obj.transform.Find("ItemIcon").GetComponent<Image>();
             var removeButton = obj.transform.Find("RemoveButton").GetComponent<Button>();
+            var itemDescription = obj.transform.Find("ItemDescription").GetComponent<TMP_Text>();
 
             itemName.text = item.itemName; 
             itemIcon.sprite = item.icon;
+            itemDescription.text = item.itemDescription;
 
             if (EnableRemove.isOn)
             {
@@ -60,7 +62,7 @@ public class InventoryManager : MonoBehaviour
         SetInventoryItems();
     }
 
-    public void cleanList()
+    public void CleanList()
     {
         //clean content before opening inventory
         foreach (Transform item in ItemContent)
