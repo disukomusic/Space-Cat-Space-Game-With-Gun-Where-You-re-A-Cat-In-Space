@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+    
 
     private void Awake()
     {
@@ -18,6 +19,12 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("enemy hit by bullet");
             Destroy(gameObject);
+        }
+        // for now, make it so collison by enemy reduces player health by some number
+        // or should we make the enemies fire their own bullets and that decreases its health..?
+        else if (col.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("player hit by enemy");
         }
     }
 }
