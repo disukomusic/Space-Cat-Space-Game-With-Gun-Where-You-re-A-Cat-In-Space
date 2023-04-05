@@ -14,5 +14,4 @@ public class InteractionHandler : MonoBehaviour
             interactable.Interact();
         }
     }
-
 }

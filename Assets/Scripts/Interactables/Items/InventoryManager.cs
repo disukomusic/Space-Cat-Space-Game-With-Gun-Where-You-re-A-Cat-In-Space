@@ -31,6 +31,10 @@ public class InventoryManager : MonoBehaviour
     public void Remove(Item item)
     {
         Items.Remove(item);
+        if (item.itemType == Item.ItemType.Weapon)
+        {
+            WeaponsManager.Instance.SetWeapon(null);
+        }
     }
 
     public void ListItems()
