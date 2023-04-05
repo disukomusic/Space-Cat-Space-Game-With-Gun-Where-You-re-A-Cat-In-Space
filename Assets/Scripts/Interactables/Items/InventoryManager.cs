@@ -27,8 +27,6 @@ public class InventoryManager : MonoBehaviour
     {
         Items.Add(item);
     }
-
-
     
     public void Remove(Item item)
     {
@@ -37,11 +35,8 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        //clean content before opening inventory
-        foreach (Transform item in ItemContent)
-        {
-            Destroy(item.gameObject);
-        }
+        cleanList();
+
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);
@@ -59,6 +54,15 @@ public class InventoryManager : MonoBehaviour
         }
         
         SetInventoryItems();
+    }
+
+    public void cleanList()
+    {
+        //clean content before opening inventory
+        foreach (Transform item in ItemContent)
+        {
+            Destroy(item.gameObject);
+        }
     }
 
     public void EnableItemsRemove()
