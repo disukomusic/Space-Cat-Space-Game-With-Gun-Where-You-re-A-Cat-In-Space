@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7922362007116507774}
   - component: {fileID: 7922362007116507773}
   - component: {fileID: 7922362007116507775}
+  - component: {fileID: 6211601133608105632}
   m_Layer: 0
   m_Name: That One Laser Gun
   m_TagString: Untagged
@@ -58,10 +59,25 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6211601133608105632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922362007116507772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5cd8e004cf5d24a8da4fb1c5caa3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreesPerSecond: 15
+  amplitude: 0.5
+  frequency: 1
 --- !u!1 &7922362007267155186
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +139,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d316ef5dad1084c4a95b897a8ffe4162, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -206,7 +222,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: d316ef5dad1084c4a95b897a8ffe4162, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

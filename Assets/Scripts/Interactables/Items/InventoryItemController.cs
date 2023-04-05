@@ -30,7 +30,7 @@ public class InventoryItemController : MonoBehaviour
                 RemoveItem();
                 break;
             case Item.ItemType.Weapon:
-                Player.Instance.SetWeapon(item.id);
+                WeaponsManager.Instance.SetWeapon(item);
                 break;
             case Item.ItemType.Test:
                 Debug.Log("test item what the fuck");

@@ -19,21 +19,14 @@ public class Player : MonoBehaviour
     public TMP_Text HealthText;
     public TMP_Text ScoreText;
 
-    public int weapon;
 
-    public void SetWeapon(int id)
-    {
-        Debug.Log("removed weapon" + weapon);
-        weapon = id;
-        Debug.Log("equipped weapon" + weapon);
-    }
-    public void IncreaseHealth(int value)
+    public void IncreaseHealth(float value)
     {
         health += value;
         HealthText.text = $"HP: {health}";
     }
     
-    public void IncreaseScore(int value)
+    public void IncreaseScore(float value)
     {
         score += value;
         ScoreText.text = $"HP: {score}";
