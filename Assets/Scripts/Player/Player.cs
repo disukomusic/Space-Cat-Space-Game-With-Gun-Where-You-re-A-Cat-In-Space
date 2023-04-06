@@ -12,24 +12,43 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        SetHealth(100);
+        SetScore(0);
     }
 
     public float health;
     public float score;
+    
     public TMP_Text HealthText;
     public TMP_Text ScoreText;
 
 
+    public void SetHealth(float value)
+    {
+        health = value;
+        HealthText.text = $"HP: {health}";
+    }
     public void IncreaseHealth(float value)
     {
         health += value;
         HealthText.text = $"HP: {health}";
     }
     
+    public void DecreaseHealth(float value)
+    {
+        health -= value;
+        HealthText.text = $"HP: {health}";
+    }
+    
+    public void SetScore(float value)
+    {
+        score = value;
+        ScoreText.text = $"Score: {score}";
+    }
     public void IncreaseScore(float value)
     {
         score += value;
-        ScoreText.text = $"HP: {score}";
+        ScoreText.text = $"Score: {score}";
     }
     public void ResetPlayerPosition()
     {

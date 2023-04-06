@@ -19,6 +19,5 @@ public class Bullet : MonoBehaviour
         
         transform.rotation = Quaternion.LookRotation(flatAimTarget);
         _rigidbody.AddForce(flatAimTarget * speed);
-        Debug.Log(flatAimTarget);
     }
 }
