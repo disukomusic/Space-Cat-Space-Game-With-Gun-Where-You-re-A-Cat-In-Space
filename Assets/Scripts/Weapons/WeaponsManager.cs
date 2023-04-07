@@ -26,7 +26,7 @@ public class WeaponsManager : MonoBehaviour
 
         SetBulletData();
         
-        Debug.Log("equipped weapon" + equippedWeapon.name);
+        AlertHandler.Instance.DisplayAlert("Equipped weapon: " + equippedWeapon.name, Color.magenta);
     }
 
     private void BalancePower()

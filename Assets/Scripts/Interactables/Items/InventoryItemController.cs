@@ -23,20 +23,22 @@ public class InventoryItemController : MonoBehaviour
         {
             case Item.ItemType.HealthUp:
                 Player.Instance.IncreaseHealth(item.value);
+                AlertHandler.Instance.DisplayAlert("HP +" + item.value, Color.green);
                 RemoveItem();
                 break;
             case Item.ItemType.ScoreUp:
                 Player.Instance.IncreaseScore(item.value);
+                AlertHandler.Instance.DisplayAlert("Score +" + item.value, Color.green);
                 RemoveItem();
                 break;
             case Item.ItemType.Weapon:
                 WeaponsManager.Instance.SetWeapon(item);
                 break;
             case Item.ItemType.Trophy:
-                Debug.Log("weeee trophy time");
+                AlertHandler.Instance.DisplayAlert("Trophy!! wow!!!!", Color.cyan);
                 break;
             case Item.ItemType.Test:
-                Debug.Log("test item what the fuck");
+                AlertHandler.Instance.DisplayAlert("This is a test item how the fuck did you get this", Color.cyan);
                 RemoveItem();
                 break;
         }
