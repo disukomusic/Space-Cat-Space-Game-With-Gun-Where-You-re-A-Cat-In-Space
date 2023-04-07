@@ -18,7 +18,17 @@ public class Enemy : MonoBehaviour
         if (other.gameObject.CompareTag("Bullet"))
         {
             Debug.Log("enemy hit by bullet");
-            Destroy(gameObject);
+            // set to false so the object pooler knows its available
+            gameObject.SetActive(false);
         }
+    }
+
+    public void ResetSelf()
+    {
+        // sets gameObject to active and removes rigidbody velocity.
+        // this is effectively a port of my 2D object pooler, resetting other 3D constraints may be necessary
+        gameObject.SetActive(true);
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
     }
 }
