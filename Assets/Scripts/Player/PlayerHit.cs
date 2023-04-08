@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerHit : MonoBehaviour
 {
-    public TMP_Text healthText;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))

@@ -19,7 +19,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F) && _canFire && WeaponsManager.Instance.equippedWeapon)
+        if (Input.GetMouseButton(0) && _canFire && WeaponsManager.Instance.equippedWeapon)
         {
             StartCoroutine(Fire());
         }
