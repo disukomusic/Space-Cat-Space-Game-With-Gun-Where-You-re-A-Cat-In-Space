@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2659d74a3b4f6f64d8cc1d30b8bf8073, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 5192373726333067544, guid: c70c5ac331c35694ba1690d556140705,
+  enemyPrefab: {fileID: 7534445530659797101, guid: 50f00ce78ef3ec844acf835578065b7e,
     type: 3}
 --- !u!65 &766387192
 BoxCollider:
@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b2ed39ecda6c74c999635a1563bc4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 5192373726333067544, guid: c70c5ac331c35694ba1690d556140705,
+  enemyPrefab: {fileID: 7534445530659797101, guid: 50f00ce78ef3ec844acf835578065b7e,
     type: 3}
 --- !u!1 &806289058
 GameObject:
