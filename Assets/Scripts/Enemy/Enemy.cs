@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            Destroy(other.gameObject);
             Debug.Log("enemy hit by bullet");
             // set to false so the object pooler knows its available
             gameObject.SetActive(false);

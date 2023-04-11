@@ -15,6 +15,6 @@ MonoBehaviour:
   id: 1001
   itemName: Shotgun
   itemDescription: 
-  value: 7
+  value: 0.75
   icon: {fileID: 21300000, guid: fc651e3bfb5dceb4aaa7d589d161132f, type: 3}
   itemType: 3

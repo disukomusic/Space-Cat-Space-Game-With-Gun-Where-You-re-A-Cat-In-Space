@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponsManager : MonoBehaviour
@@ -21,18 +22,22 @@ public class WeaponsManager : MonoBehaviour
     {
         
         equippedWeapon = weapon;
-        power = weapon.value;
-        BalancePower();
+        fireRate = weapon.value;
+        
+        power = RemapFireRateToPower(fireRate);
 
         SetBulletData();
         
         AlertHandler.Instance.DisplayAlert("Equipped weapon: " + equippedWeapon.name, Color.magenta);
     }
-
-    private void BalancePower()
+    
+    float RemapFireRateToPower(float weaponFireRate)
     {
-        //there might be a better way to do this... map range???
-        fireRate = (power - (power * 0.7f)) * 0.1f;
+        float normalizedFireRate = 1.0f - weaponFireRate;
+        
+        float remappedPower = Mathf.Lerp(10, 0, normalizedFireRate);
+        
+        return remappedPower;
     }
 
     void SetBulletData()

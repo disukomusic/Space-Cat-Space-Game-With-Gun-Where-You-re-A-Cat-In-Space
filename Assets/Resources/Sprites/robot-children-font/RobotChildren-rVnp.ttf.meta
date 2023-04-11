@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 459be6376d4d9604aaa2efa689ac8a45
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Robot Children
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 25b2e09efa2f1a74b9c40b82e3be5a65, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

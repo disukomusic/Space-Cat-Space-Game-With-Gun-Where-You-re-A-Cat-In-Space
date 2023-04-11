@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class Bullet : MonoBehaviour
     
     private void Awake()
     {
+        StartCoroutine(TEMPORARYBULLETTIMERDELETEME());
         _rigidbody = GetComponent<Rigidbody>();
        
         //we can either add some height offset to the aim target or we can flatten the direction after to make it ... flat
@@ -19,5 +21,12 @@ public class Bullet : MonoBehaviour
         
         transform.rotation = Quaternion.LookRotation(flatAimTarget);
         _rigidbody.AddForce(flatAimTarget * speed);
+    }
+
+
+    IEnumerator TEMPORARYBULLETTIMERDELETEME()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 }
