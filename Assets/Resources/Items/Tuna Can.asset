@@ -16,5 +16,5 @@ MonoBehaviour:
   itemName: Tuna
   itemDescription: 
   value: 20
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 71aad76a49942c84697a7456b018fdc1, type: 3}
   itemType: 1

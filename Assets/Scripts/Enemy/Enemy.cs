@@ -36,6 +36,7 @@ public class Enemy : MonoBehaviour
 
             if (_health < 1)
             {
+                Player.Instance.score += 100f;
                 gameObject.SetActive(false);
             }
         }
