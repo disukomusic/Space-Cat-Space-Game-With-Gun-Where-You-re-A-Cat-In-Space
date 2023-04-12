@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0d9f3ca12443b68e1296dde7d8b4e9, type: 3}
   m_Name: Tuna Can
   m_EditorClassIdentifier: 
-  id: 0
-  itemName: 
+  id: 2001
+  itemName: Tuna
   itemDescription: 
-  value: 0
+  value: 20
   icon: {fileID: 0}
-  itemType: 0
+  itemType: 1
