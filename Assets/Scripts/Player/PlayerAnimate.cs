@@ -35,9 +35,8 @@ public class PlayerAnimate : MonoBehaviour
             {
                 if(Input.GetKey("t"))
                 {
-                    //this is horrific and inefficient and terrible but it is worth it for funny cat dance
                     animator.SetTrigger("dance");
-                    GetComponent<PlayerSounds>().playSound("catjazz");
+                    SoundManager.PlayMusic(SoundManager.Music.CatJazz);
                 }
             }
         }

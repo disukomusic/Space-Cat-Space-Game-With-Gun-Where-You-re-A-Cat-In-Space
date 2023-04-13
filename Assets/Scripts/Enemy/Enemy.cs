@@ -13,9 +13,6 @@ public class Enemy : MonoBehaviour
     private float _health;
     private Rigidbody _rigidbody;
     private Transform mainCameraTransform;
-
-
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

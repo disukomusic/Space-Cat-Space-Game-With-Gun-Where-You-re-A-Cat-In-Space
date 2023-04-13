@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
 
     private void Awake()
     {
-        StartCoroutine(TEMPORARYBULLETTIMERDELETEME());
+        StartCoroutine(TEMPORARYBULLETTIMER_DONOTSHIP());
         _rigidbody = GetComponent<Rigidbody>();
        
         //we can either add some height offset to the aim target or we can flatten the direction after to make it ... flat
@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-    IEnumerator TEMPORARYBULLETTIMERDELETEME()
+    private IEnumerator TEMPORARYBULLETTIMER_DONOTSHIP()
     {
         yield return new WaitForSeconds(2);
         Destroy(gameObject);

@@ -13,6 +13,9 @@ public class PlayerHit : MonoBehaviour
             float damage = other.gameObject.GetComponent<Enemy>().damage;
             Player.Instance.health -= damage;
             Player.Instance.DecreaseHealth(damage);
+            
+            SoundManager.PlaySoundAtPosition(SoundManager.Sound.PlayerHurt, transform.position);
+            
             if (Player.Instance.health < 1)
             {
                 Destroy(gameObject);
