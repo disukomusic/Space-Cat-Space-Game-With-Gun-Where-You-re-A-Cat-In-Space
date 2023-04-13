@@ -18,6 +18,13 @@ public class WeaponsManager : MonoBehaviour
     public Item equippedWeapon;
     public Bullet bullet;
 
+    public void UnEquip(Item weapon)
+    {
+        AlertHandler.Instance.DisplayAlert("Unequipped weapon: " + equippedWeapon.name, Color.magenta);
+        equippedWeapon = null;
+        fireRate = 0;
+        power = 0;
+    }
     public void SetWeapon(Item weapon)
     {
         

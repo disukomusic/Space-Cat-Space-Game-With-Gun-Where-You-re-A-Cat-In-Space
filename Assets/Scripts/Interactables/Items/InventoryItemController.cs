@@ -32,7 +32,14 @@ public class InventoryItemController : MonoBehaviour
                 RemoveItem();
                 break;
             case Item.ItemType.Weapon:
-                WeaponsManager.Instance.SetWeapon(item);
+                if (item != WeaponsManager.Instance.equippedWeapon)
+                {
+                    WeaponsManager.Instance.SetWeapon(item);
+                }
+                else
+                {
+                    WeaponsManager.Instance.UnEquip(item);
+                }
                 break;
             case Item.ItemType.Trophy:
                 AlertHandler.Instance.DisplayAlert("Trophy!! wow!!!!", Color.cyan);

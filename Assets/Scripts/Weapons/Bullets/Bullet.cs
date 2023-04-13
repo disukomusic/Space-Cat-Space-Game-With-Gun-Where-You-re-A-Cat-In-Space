@@ -8,8 +8,9 @@ public class Bullet : MonoBehaviour
     public float power;
     public float fireRate;
     public float speed = 1000f;
+
     private Rigidbody _rigidbody;
-    
+
     private void Awake()
     {
         StartCoroutine(TEMPORARYBULLETTIMERDELETEME());

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public static Player Instance;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -53,5 +53,9 @@ public class Player : MonoBehaviour
     public void ResetPlayerPosition()
     {
         transform.position = new Vector3(0, 0f, 0f);
+    }
+
+    public void CatJazz()
+    {
     }
 }

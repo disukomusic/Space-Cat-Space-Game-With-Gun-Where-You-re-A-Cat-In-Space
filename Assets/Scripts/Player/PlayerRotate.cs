@@ -5,14 +5,7 @@ using UnityEngine;
 
 public class PlayerRotate : MonoBehaviour
 {
-    private Transform _transform;
     private Vector3 _rotate;
-
-    
-    void Start()
-    {
-        _transform = GetComponent<Transform>();
-    }
 
     void Update()
     {
@@ -29,6 +22,6 @@ public class PlayerRotate : MonoBehaviour
         //Rotate towards the target rotation
         Quaternion targetRotation = Quaternion.LookRotation(movement);
         targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360 * Time.deltaTime);
-        _transform.rotation = targetRotation;
+        transform.rotation = targetRotation;
     }
 }
