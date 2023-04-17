@@ -16,9 +16,14 @@ public class AlertHandler : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        _alertPosition = transform.position;
     }
-    
+
+    private void Start()
+    {
+        _alertPosition = transform.position;
+
+    }
+
     public void DisplayAlert(string alert, Color color)
     {
         StopAllCoroutines();

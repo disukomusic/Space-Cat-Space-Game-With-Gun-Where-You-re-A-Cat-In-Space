@@ -14,6 +14,8 @@ public class InventoryItemController : MonoBehaviour
 
     public void AddItem(Item newItem)
     {
+        AlertHandler.Instance.DisplayAlert("Picked Up" + item.name, Color.magenta);
+
         item = newItem;
     }
     

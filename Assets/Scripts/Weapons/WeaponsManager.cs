@@ -29,22 +29,13 @@ public class WeaponsManager : MonoBehaviour
     {
         
         equippedWeapon = weapon;
-        fireRate = weapon.value;
         
-        power = RemapFireRateToPower(fireRate);
-
+        fireRate = weapon.value;
+        power = weapon.value2;
+        
         SetBulletData();
         
         AlertHandler.Instance.DisplayAlert("Equipped weapon: " + equippedWeapon.name, Color.magenta);
-    }
-    
-    float RemapFireRateToPower(float weaponFireRate)
-    {
-        float normalizedFireRate = 1.0f - weaponFireRate;
-        
-        float remappedPower = Mathf.Lerp(10, 0, normalizedFireRate);
-        
-        return remappedPower;
     }
 
     void SetBulletData()

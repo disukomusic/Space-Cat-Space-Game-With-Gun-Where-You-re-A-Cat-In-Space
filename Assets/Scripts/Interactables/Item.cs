@@ -7,7 +7,12 @@ public class Item : ScriptableObject
     public int id;
     public string itemName;
     public string itemDescription;
+    [Header("For HP Up: HP gain      " +
+            " For Weapons: Weapon Fire Rate      " +
+            "For Score Up: Score Gain     ")]
     public float value;
+    [Header("For Weapons: Weapon Fire Rate")]
+    public float value2;
     public Sprite icon;
     public ItemType itemType;
 

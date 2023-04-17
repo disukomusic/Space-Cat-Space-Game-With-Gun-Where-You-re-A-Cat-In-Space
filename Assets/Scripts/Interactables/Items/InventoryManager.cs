@@ -35,6 +35,7 @@ public class InventoryManager : MonoBehaviour
         {
             WeaponsManager.Instance.SetWeapon(null);
         }
+
     }
 
     public void ListItems()
