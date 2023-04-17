@@ -22,6 +22,10 @@ public class SoundManager : MonoBehaviour
         PlayerHurt,
         PlayerDie,
         
+        PistolFire,
+        ShotgunFire,
+        
+        
         EnemySpawn,
         EnemyHurt,
         EnemyDie,
@@ -52,7 +56,7 @@ public class SoundManager : MonoBehaviour
     {
         _soundTimerDictionary = new Dictionary<Sound, float>
         {
-            [Sound.CatJazz] = 0
+            [Sound.EnemyDie] = 0
         };
     }
 
@@ -88,9 +92,10 @@ public class SoundManager : MonoBehaviour
             AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
             
             soundGameObject.transform.position = position;
-            
+
+            audioSource.volume = 0.5f;
             audioSource.maxDistance = 100f;
-            audioSource.pitch += Random.Range(-0.1f, 0.1f);
+            audioSource.pitch += Random.Range(-0.2f, 0.2f);
             audioSource.rolloffMode = AudioRolloffMode.Linear;
             audioSource.spatialBlend = 1f;
             

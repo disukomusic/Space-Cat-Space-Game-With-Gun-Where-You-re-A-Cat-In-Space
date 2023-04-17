@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  baseHealth: 20
+  baseHealth: 10
   healthText: {fileID: 9138014498317999140}
 --- !u!136 &8602111764778873538
 CapsuleCollider:

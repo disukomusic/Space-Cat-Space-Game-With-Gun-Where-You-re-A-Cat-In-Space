@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        SetHealth(100);
+        SetHealth(999);
         SetScore(0);
     }
 
@@ -55,7 +55,4 @@ public class Player : MonoBehaviour
         transform.position = new Vector3(0, 0f, 0f);
     }
 
-    public void CatJazz()
-    {
-    }
 }

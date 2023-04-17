@@ -22,6 +22,16 @@ public class Bullet : MonoBehaviour
         
         transform.rotation = Quaternion.LookRotation(flatAimTarget);
         _rigidbody.AddForce(flatAimTarget * speed);
+
+        switch (WeaponsManager.Instance.equippedWeapon.id)
+        {
+            case 1000: 
+                SoundManager.PlaySound(SoundManager.Sound.PistolFire);
+                break;
+            case 1001:
+                SoundManager.PlaySound(SoundManager.Sound.ShotgunFire);
+                break;
+        }
     }
 
 

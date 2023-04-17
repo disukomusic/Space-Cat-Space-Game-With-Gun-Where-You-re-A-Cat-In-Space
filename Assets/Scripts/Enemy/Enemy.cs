@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 
     private float _health;
     private Rigidbody _rigidbody;
-    private Transform mainCameraTransform;
+    private Transform _mainCameraTransform;
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -28,13 +28,13 @@ public class Enemy : MonoBehaviour
             healthText.text = _health.ToString();
             
             Destroy(other.gameObject);
-            Debug.Log("enemy hit by bullet");
             // set to false so the object pooler knows its available
 
             if (_health < 1)
             {
-                Player.Instance.score += 100f;
+                Player.Instance.IncreaseScore(100f);
                 EnemyPooler.Instance.enemyCount--;
+                SoundManager.PlaySound(SoundManager.Sound.EnemyDie);
                 gameObject.SetActive(false);
             }
         }
