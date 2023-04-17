@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
             if (_health < 1)
             {
                 Player.Instance.score += 100f;
+                EnemyPooler.Instance.enemyCount--;
                 gameObject.SetActive(false);
             }
         }
@@ -41,6 +42,7 @@ public class Enemy : MonoBehaviour
 
     public void ResetSelf()
     {
+        EnemyPooler.Instance.enemyCount++;
         _health = baseHealth;
         healthText.text = _health.ToString();
         // sets gameObject to active and removes rigidbody velocity.

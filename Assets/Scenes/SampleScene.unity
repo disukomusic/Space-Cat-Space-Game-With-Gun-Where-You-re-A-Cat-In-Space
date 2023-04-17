@@ -1736,6 +1736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5192373726333067544, guid: 1b526325be9ca5b42a1a6c676e8e74f2,
     type: 3}
+  waitSecondsTime: 5
+  subWaitSeconds: 0.75
 --- !u!65 &766387192
 BoxCollider:
   m_ObjectHideFlags: 0

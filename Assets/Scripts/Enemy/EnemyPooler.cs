@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class EnemyPooler : MonoBehaviour
 {
+    public static EnemyPooler Instance;
+    
     [SerializeField] private GameObject enemyPrefab;
-    private List<Enemy> objectPool;
+    public List<Enemy> objectPool;
+    public float enemyCount;
 
     private void Awake()
     {
+        Instance = this;
         objectPool = new List<Enemy>();
     }
 

@@ -21,7 +21,15 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(SpawnAtTime());
     }
-    
+
+
+    private void Update()
+    {
+        if (_objectPooler.enemyCount < 1)
+        {
+            StartCoroutine(SpawnAtTime());
+        }
+    }
 
     public void SpawnEnemy()
     {
