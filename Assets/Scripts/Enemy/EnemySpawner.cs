@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyPrefab;
     [SerializeField] private float waitSecondsTime;
     [SerializeField] private float subWaitSeconds;
+    [SerializeField] private int howManyEnemies;
 
     private void Awake()
     {
@@ -48,10 +49,12 @@ public class EnemySpawner : MonoBehaviour
     {
         // currently spawns enemies at the spawn point after waitSecondsTime has passed,
         // and spawns 10 enemies every subWaitSeconds.
-        // todo check the count of the object pooler list to spawn in enemies if it is less than a certain number
+        // todo find out how to make enemies consistently spawn if there are less active than a certain amount
+        // simply checking the list's Count wouldn't work as inactive gameObjects are not removed from the list
         yield return new WaitForSeconds(waitSecondsTime);
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < howManyEnemies; i++)
         {
+            
             yield return new WaitForSeconds(subWaitSeconds);
             SpawnEnemy();
         }
