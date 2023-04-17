@@ -1713,8 +1713,8 @@ GameObject:
   - component: {fileID: 766387194}
   - component: {fileID: 766387193}
   - component: {fileID: 766387192}
-  - component: {fileID: 766387191}
   - component: {fileID: 766387196}
+  - component: {fileID: 766387191}
   m_Layer: 0
   m_Name: EnemySpawnerPlaceholder
   m_TagString: Untagged
@@ -1830,6 +1830,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 5192373726333067544, guid: 1b526325be9ca5b42a1a6c676e8e74f2,
     type: 3}
+  objectPool: []
+  enemyCount: 0
 --- !u!1 &806289058
 GameObject:
   m_ObjectHideFlags: 0
