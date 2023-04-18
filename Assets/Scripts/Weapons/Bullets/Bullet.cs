@@ -7,11 +7,11 @@ public class Bullet : MonoBehaviour
 {
     public float power;
     public float fireRate;
-    public float speed = 1000f;
+    public float speed = 10f;
 
     private Rigidbody _rigidbody;
 
-    private void Awake()
+    public virtual void Awake()
     {
         StartCoroutine(TEMPORARYBULLETTIMER_DONOTSHIP());
         _rigidbody = GetComponent<Rigidbody>();
@@ -22,20 +22,10 @@ public class Bullet : MonoBehaviour
         
         transform.rotation = Quaternion.LookRotation(flatAimTarget);
         _rigidbody.AddForce(flatAimTarget * speed);
-
-        switch (WeaponsManager.Instance.equippedWeapon.id)
-        {
-            case 1000: 
-                SoundManager.PlaySound(SoundManager.Sound.PistolFire);
-                break;
-            case 1001:
-                SoundManager.PlaySound(SoundManager.Sound.ShotgunFire);
-                break;
-        }
     }
 
 
-    private IEnumerator TEMPORARYBULLETTIMER_DONOTSHIP()
+    protected IEnumerator TEMPORARYBULLETTIMER_DONOTSHIP()
     {
         yield return new WaitForSeconds(2);
         Destroy(gameObject);

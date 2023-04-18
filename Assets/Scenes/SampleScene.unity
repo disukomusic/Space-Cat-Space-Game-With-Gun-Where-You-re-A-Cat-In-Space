@@ -2689,8 +2689,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1016398274}
   - component: {fileID: 1016398277}
-  - component: {fileID: 1016398276}
   - component: {fileID: 1016398275}
+  - component: {fileID: 1016398276}
   m_Layer: 5
   m_Name: AlertText
   m_TagString: Untagged
@@ -2753,8 +2753,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: aaaaaaaaaaaaaa
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 979e036b4dd3ce04999459379b55c26f, type: 2}
-  m_sharedMaterial: {fileID: 2013713685149842156, guid: 979e036b4dd3ce04999459379b55c26f,
+  m_fontAsset: {fileID: 11400000, guid: 46691a8317f1a1f4cab70a3349b4f4c0, type: 2}
+  m_sharedMaterial: {fileID: -7821784873221643601, guid: 46691a8317f1a1f4cab70a3349b4f4c0,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

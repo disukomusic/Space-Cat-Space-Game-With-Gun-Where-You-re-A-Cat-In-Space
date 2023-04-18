@@ -13,7 +13,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         player = GetComponent<Player>();
     }
-    public void Shoot(Bullet bullet)
+    public void Shoot(GameObject bullet)
     {
         Instantiate(bullet, transform.position, transform.rotation);
     }
@@ -28,7 +28,7 @@ public class PlayerWeapon : MonoBehaviour
     IEnumerator Fire()
     {
         _canFire = false;
-        Shoot(WeaponsManager.Instance.bullet);
+        Shoot(WeaponsManager.Instance.equippedWeapon.bullet);
         yield return new WaitForSeconds(WeaponsManager.Instance.fireRate);
         _canFire = true;
     }

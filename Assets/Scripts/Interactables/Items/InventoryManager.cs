@@ -35,13 +35,12 @@ public class InventoryManager : MonoBehaviour
         {
             WeaponsManager.Instance.SetWeapon(null);
         }
-
     }
 
     public void ListItems()
     {
         CleanList();
-
+        
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(InventoryItem, ItemContent);

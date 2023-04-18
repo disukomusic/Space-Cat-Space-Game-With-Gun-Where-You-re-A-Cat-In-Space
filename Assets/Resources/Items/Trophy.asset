@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   itemName: Trophy
-  itemDescription: Wow! A Trophy!
+  itemDescription: Capsule Cat My Beloved
   value: 0
+  value2: 0
   icon: {fileID: 21300000, guid: ec9b78ff8522e884283f5392eae80d44, type: 3}
   itemType: 4
+  bullet: {fileID: 0}

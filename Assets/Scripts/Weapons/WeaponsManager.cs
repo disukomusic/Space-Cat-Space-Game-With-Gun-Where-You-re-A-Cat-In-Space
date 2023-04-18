@@ -16,7 +16,7 @@ public class WeaponsManager : MonoBehaviour
     public float fireRate;
     
     public Item equippedWeapon;
-    public Bullet bullet;
+    public GameObject bullet;
 
     public void UnEquip(Item weapon)
     {
@@ -29,7 +29,7 @@ public class WeaponsManager : MonoBehaviour
     {
         
         equippedWeapon = weapon;
-        
+        bullet = weapon.bullet;
         fireRate = weapon.value;
         power = weapon.value2;
         
@@ -40,7 +40,7 @@ public class WeaponsManager : MonoBehaviour
 
     void SetBulletData()
     {
-        bullet.fireRate = fireRate;
-        bullet.power = power;
+        bullet.GetComponent<Bullet>().fireRate = fireRate;
+        bullet.GetComponent<Bullet>().power = power;
     }
 }
