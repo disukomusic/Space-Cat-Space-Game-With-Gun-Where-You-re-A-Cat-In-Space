@@ -6,6 +6,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// adapated from https://www.youtube.com/watch?v=2WnAOV7nHW0
+/// </summary>
 public class UIInventory : MonoBehaviour
 {
     private Inventory _inventory;

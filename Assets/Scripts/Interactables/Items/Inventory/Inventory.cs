@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// adapated from https://www.youtube.com/watch?v=2WnAOV7nHW0
+/// </summary>
 public class Inventory : MonoBehaviour
 {
     public event EventHandler OnListItemChanged;
