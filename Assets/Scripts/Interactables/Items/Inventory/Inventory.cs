@@ -29,6 +29,7 @@ public class Inventory : MonoBehaviour
     public void Remove(Item item)
     {
         itemList.Remove(item);
+        OnListItemChanged?.Invoke(this, EventArgs.Empty);
     }
 
 

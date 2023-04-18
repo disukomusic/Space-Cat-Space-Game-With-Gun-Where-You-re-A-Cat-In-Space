@@ -6,18 +6,19 @@ using UnityEngine;
 public class ExplosiveBarrel : MonoBehaviour
 {
     public GameObject explodeEffect;
-    private void OnTriggerEnter(Collider other)
+
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("Explosion"))
+        {
+            Debug.Log("Barrel Hit by Other Barrel");
+            Explode();
+        }
+
+        if (other.gameObject.CompareTag("Bullet"))
         {
             Explode();
             Destroy(other.gameObject);
-        }else{ 
-            if(other.CompareTag("Explosion"))
-            {
-                Explode();
-                Destroy(other.gameObject);
-            }
         }
     }
 

@@ -17,8 +17,8 @@ public class Bullet : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
        
         //we can either add some height offset to the aim target or we can flatten the direction after to make it ... flat
-        Vector3 flatAimTarget = Hunter.Utility.GetMousePositionOnGroundPlane() - transform.position + new Vector3(0f,1f,0f);
-        flatAimTarget = new Vector3(flatAimTarget.x, 0, flatAimTarget.z).normalized;
+        Vector3 flatAimTarget = Hunter.Utility.GetMousePositionOnGroundPlane() - transform.position;
+        flatAimTarget = new Vector3(flatAimTarget.x, 0.5f, flatAimTarget.z).normalized;
         
         transform.rotation = Quaternion.LookRotation(flatAimTarget);
         _rigidbody.AddForce(flatAimTarget * speed);
