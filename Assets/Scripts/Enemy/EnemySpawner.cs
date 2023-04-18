@@ -23,26 +23,9 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(SpawnAtTime());
     }
 
-
-    private void Update()
-    {
-        if (_objectPooler.enemyCount < 1)
-        {
-            //this is fucking dumb
-            //todo: enemy spawner 
-            SpawnEnemy();
-            SpawnEnemy();
-            SpawnEnemy();
-            SpawnEnemy();
-            SpawnEnemy();
-
-        }
-    }
-
     public void SpawnEnemy()
     {
-        
-        Enemy enemy = _objectPooler.CreateGameObject(transform.position);
+        Enemy enemy = _objectPooler.CreateEnemyAtPosition(transform.position);
     }
 
     public IEnumerator SpawnAtTime()

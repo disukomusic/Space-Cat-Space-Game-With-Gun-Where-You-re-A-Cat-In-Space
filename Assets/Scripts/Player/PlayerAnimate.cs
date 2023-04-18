@@ -29,16 +29,11 @@ public class PlayerAnimate : MonoBehaviour
 
         }
 
-        if(Input.GetKey("c"))
+        if(Input.GetKey("f"))
         {
-            if(Input.GetKey("a"))
-            {
-                if(Input.GetKey("t"))
-                {
-                    animator.SetTrigger("dance");
-                    SoundManager.PlayMusic(SoundManager.Music.CatJazz);
-                }
-            }
+            transform.rotation = Quaternion.LookRotation(Vector3.zero);
+            animator.SetTrigger("dance");
+            SoundManager.PlayMusic(SoundManager.Music.CatJazz);
         }
     }
 }

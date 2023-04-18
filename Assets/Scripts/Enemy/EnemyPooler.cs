@@ -17,7 +17,7 @@ public class EnemyPooler : MonoBehaviour
         objectPool = new List<Enemy>();
     }
 
-    public Enemy CreateGameObject(Vector3 position)
+    public Enemy CreateEnemyAtPosition(Vector3 position)
     {
         foreach (var enemy in objectPool)
         {

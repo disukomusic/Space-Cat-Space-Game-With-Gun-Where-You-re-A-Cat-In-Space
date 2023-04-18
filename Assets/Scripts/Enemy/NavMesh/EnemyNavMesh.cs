@@ -9,29 +9,31 @@ using Random = UnityEngine.Random;
 // some of the things done in the video are already present in other places, thus I did not follow
 public class EnemyNavMesh : MonoBehaviour
 {
-    private NavMeshAgent _NavMeshAgent;
+    private NavMeshAgent _navMeshAgent;
 
+    public Enemy enemy;
     public Transform player;
 
     public LayerMask whatIsGround, whatIsPlayer;
     
     // patrolling
     public Vector3 walkPoint;
-    private bool walkPointSet;
+    private bool _walkPointSet;
     public float walkPointRange = 5;
     
     // attacking
     public float timeBetweenAttacks = 0.5f;
-    private bool alreadyAttacked;
+    private bool _alreadyAttacked;
     
     // states
-    public float sightRange, attackRange = 12f;
+    public float sightRange = 12f;
+    public float attackRange = 1f;
     public bool playerInSightRange, playerInAttackRange = false;
 
     private void Awake()
     {
         player = GameObject.Find("Player").transform;
-        _NavMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
@@ -56,13 +58,13 @@ public class EnemyNavMesh : MonoBehaviour
 
     private void Patrolling()
     {
-        if (!walkPointSet)
+        if (!_walkPointSet)
         {
             SearchWalkPoint();
         }
         else
         {
-            _NavMeshAgent.SetDestination(walkPoint);
+            _navMeshAgent.SetDestination(walkPoint);
         }
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
@@ -70,7 +72,7 @@ public class EnemyNavMesh : MonoBehaviour
         // when walkpoint is reached
         if (distanceToWalkPoint.magnitude < 1f)
         {
-            walkPointSet = false;
+            _walkPointSet = false;
         }
     }
 
@@ -83,30 +85,34 @@ public class EnemyNavMesh : MonoBehaviour
 
         if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
         {
-            walkPointSet = true;
+            _walkPointSet = true;
         }
     }
 
-    private void ChasePlayer()
+    public void ChasePlayer()
     {
-        _NavMeshAgent.SetDestination(player.position);
+        _navMeshAgent.SetDestination(player.position);
     }
 
     private void AttackPlayer()
     {
-        _NavMeshAgent.SetDestination(transform.position);
+        _navMeshAgent.SetDestination(transform.position);
         
         transform.LookAt(player);
+        StartCoroutine(attack(timeBetweenAttacks));
+        _alreadyAttacked = true;
 
-        if (!alreadyAttacked)
-        {
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
     }
 
-    void ResetAttack()
+
+    private IEnumerator attack(float delay)
     {
-        alreadyAttacked = false;
+        if (!_alreadyAttacked)
+        {
+            yield return new WaitForSeconds(delay);
+            Player.Instance.HitPlayer(enemy.damage);
+        }
+        _alreadyAttacked = false;
+        
     }
 }

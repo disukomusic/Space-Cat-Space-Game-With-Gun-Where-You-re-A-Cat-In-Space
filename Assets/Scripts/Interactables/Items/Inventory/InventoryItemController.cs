@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class InventoryItemController : MonoBehaviour
 {
-    private Item item;
+    public Item item;
 
     public void RemoveItem()
     {
-        InventoryManager.Instance.Remove(item);
+        Inventory.Instance.Remove(item);
         Destroy(gameObject);
     }
 
-    public void AddItem(Item newItem)
-    {
-        item = newItem;
-    }
-    
     public void UseItem()
     {
         switch (item.itemType)
@@ -24,6 +19,7 @@ public class InventoryItemController : MonoBehaviour
             case Item.ItemType.HealthUp:
                 Player.Instance.IncreaseHealth(item.value);
                 AlertHandler.Instance.DisplayAlert("HP +" + item.value, Color.green);
+                Flasher.Instance.Flash(Color.green, 0.2f);
                 RemoveItem();
                 break;
             case Item.ItemType.ScoreUp:
@@ -49,7 +45,5 @@ public class InventoryItemController : MonoBehaviour
                 RemoveItem();
                 break;
         }
-
-
     }
 }

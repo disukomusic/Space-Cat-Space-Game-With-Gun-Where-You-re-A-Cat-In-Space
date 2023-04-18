@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float damage;
     public float baseHealth;
     public TMP_Text healthText;
+    public EnemyNavMesh enemyNavMesh;
 
     private float _health;
     private Rigidbody _rigidbody;
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            enemyNavMesh.ChasePlayer();
             _health -= WeaponsManager.Instance.power;
             healthText.text = _health.ToString();
             
@@ -34,7 +36,7 @@ public class Enemy : MonoBehaviour
             {
                 Player.Instance.IncreaseScore(100f);
                 EnemyPooler.Instance.enemyCount--;
-                SoundManager.PlaySound(SoundManager.Sound.EnemyDie);
+                SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
                 gameObject.SetActive(false);
             }
         }

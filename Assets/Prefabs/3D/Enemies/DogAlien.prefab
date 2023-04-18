@@ -196,9 +196,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5192373726333067548}
   - component: {fileID: -7692687069616992687}
+  - component: {fileID: 3941357719103176892}
   - component: {fileID: 8602111764778873538}
   - component: {fileID: 597526265291011257}
-  - component: {fileID: -2181788276107510955}
   - component: {fileID: 7569338513353974441}
   m_Layer: 0
   m_Name: DogAlien
@@ -239,6 +239,34 @@ MonoBehaviour:
   damage: 1
   baseHealth: 10
   healthText: {fileID: 9138014498317999140}
+  enemyNavMesh: {fileID: 3941357719103176892}
+--- !u!114 &3941357719103176892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192373726333067544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f371fa1582cedf346a681e2b9386614c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: -7692687069616992687}
+  player: {fileID: 0}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 8
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointRange: 5
+  timeBetweenAttacks: 0.5
+  sightRange: 12
+  attackRange: 2
+  playerInSightRange: 0
+  playerInAttackRange: 0
 --- !u!136 &8602111764778873538
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -275,18 +303,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-2181788276107510955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192373726333067544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe770dcb5d765747b4bdcbf764c02d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &7569338513353974441
 Rigidbody:
   m_ObjectHideFlags: 0

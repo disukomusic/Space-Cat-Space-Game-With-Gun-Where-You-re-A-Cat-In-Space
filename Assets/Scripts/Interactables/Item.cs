@@ -25,6 +25,5 @@ public class Item : ScriptableObject
         ScoreUp,
         Weapon,
         Trophy,
-        AmmoUp,
     }
 }

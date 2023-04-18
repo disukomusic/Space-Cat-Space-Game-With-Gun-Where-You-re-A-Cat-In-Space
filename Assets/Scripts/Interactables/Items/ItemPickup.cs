@@ -8,8 +8,8 @@ public class ItemPickup : Interactable
 
     public override void Interact()
     {
-        InventoryManager.Instance.Add(item);
-        AlertHandler.Instance.DisplayAlert("Picked Up" + item.name, Color.magenta);
+        Inventory.Instance.Add(item);
+        AlertHandler.Instance.DisplayAlert("Picked Up: " + item.name, Color.magenta);
         Destroy(gameObject);
     }
 }
