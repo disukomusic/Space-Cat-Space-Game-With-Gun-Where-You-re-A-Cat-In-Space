@@ -80,6 +80,7 @@ public class SoundManager : MonoBehaviour
                 oneShotGameObject = new GameObject("One Shot Sound");
                 oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
             }
+            oneShotAudioSource.volume = 0.5f;
             oneShotAudioSource.PlayOneShot(GetSoundClip(sound));
         }
     }

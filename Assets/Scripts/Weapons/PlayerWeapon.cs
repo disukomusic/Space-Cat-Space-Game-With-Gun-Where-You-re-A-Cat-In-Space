@@ -15,7 +15,7 @@ public class PlayerWeapon : MonoBehaviour
     }
     public void Shoot(GameObject bullet)
     {
-        Instantiate(bullet, transform.position, transform.rotation);
+        Instantiate(bullet, transform.position + new Vector3(0f,1f,0f), transform.rotation);
     }
 
     private void Update()

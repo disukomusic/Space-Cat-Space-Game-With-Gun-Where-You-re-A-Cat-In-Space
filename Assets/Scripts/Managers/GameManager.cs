@@ -10,14 +10,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIInventory uiInventory;
     [SerializeField] private List<Item> startingItems;
     
+    [SerializeField] private List<ItemSpawner> itemSpawners;
+    
     private Inventory inventory;
     
     private void Awake()
     {
         Instance = this;
         SoundManager.Initialize();
-        
-
         
         uiInventory.SetInventory(Inventory.Instance);
         
@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
         foreach (Item item in startingItems)
         {
             Inventory.Instance.Add(item);
+        }
+
+        foreach (ItemSpawner spawner in itemSpawners)
+        {
+            spawner.InitializeSpawning();
+            Debug.Log("init item spawner " + spawner);
         }
         SoundManager.PlayMusic(SoundManager.Music.IdleMusic);
     }

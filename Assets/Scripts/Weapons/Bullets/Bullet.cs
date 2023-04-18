@@ -17,17 +17,27 @@ public class Bullet : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
        
         //we can either add some height offset to the aim target or we can flatten the direction after to make it ... flat
-        Vector3 flatAimTarget = Hunter.Utility.GetMousePositionOnGroundPlane() - transform.position;
+        Vector3 flatAimTarget = Hunter.Utility.GetMousePositionOnGroundPlane() - transform.position + new Vector3(0f,1f,0f);
         flatAimTarget = new Vector3(flatAimTarget.x, 0, flatAimTarget.z).normalized;
         
         transform.rotation = Quaternion.LookRotation(flatAimTarget);
         _rigidbody.AddForce(flatAimTarget * speed);
     }
 
-
     protected IEnumerator TEMPORARYBULLETTIMER_DONOTSHIP()
     {
         yield return new WaitForSeconds(2);
         Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        //check if bullet hits environment
+        if (other.gameObject.layer == 6)
+        {
+            Debug.Log("bullet hit environment");
+            //instantiate juice prefab, bullet hit particles?
+            Destroy(gameObject);
+        }
     }
 }
