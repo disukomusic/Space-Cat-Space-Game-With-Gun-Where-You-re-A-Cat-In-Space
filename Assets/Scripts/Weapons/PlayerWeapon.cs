@@ -4,15 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
-{   
-    [HideInInspector] public Player player;
+{
+    [SerializeField] private DetectMouseOver uiMouseOver;
 
     private bool _canFire = true;
 
-    private void Awake()
-    {
-        player = GetComponent<Player>();
-    }
     public void Shoot(GameObject bullet)
     {
         Instantiate(bullet, transform.position + new Vector3(0f,1f,0f), transform.rotation);
@@ -20,7 +16,7 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && _canFire && WeaponsManager.Instance.equippedWeapon)
+        if (Input.GetMouseButton(0) && _canFire && WeaponsManager.Instance.equippedWeapon && !uiMouseOver.mouseOver)
         {
             StartCoroutine(Fire());
         }

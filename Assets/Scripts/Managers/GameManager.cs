@@ -44,4 +44,5 @@ public class GameManager : MonoBehaviour
     {
         AlertHandler.Instance.DisplayAlert("You would have died if we implemented dying", Color.red);
     }
+
 }

@@ -40,6 +40,16 @@ public class Enemy : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
+
+        if (other.gameObject.CompareTag("Explosion"))
+        {
+            SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
+            AlertHandler.Instance.DisplayAlert("Barrel Kill!", Color.green);
+            Player.Instance.IncreaseScore(200f);
+            EnemyPooler.Instance.enemyCount--;
+
+            gameObject.SetActive(false);  
+        }
     }
 
     public void ResetSelf()

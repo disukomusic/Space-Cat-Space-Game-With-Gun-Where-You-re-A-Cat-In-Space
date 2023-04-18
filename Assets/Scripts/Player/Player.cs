@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
     {
         score += value;
         ScoreText.text = $"Score: {score}";
+        SoundManager.PlaySound(SoundManager.Sound.ScoreUp);
     }
     public void ResetPlayerPosition()
     {

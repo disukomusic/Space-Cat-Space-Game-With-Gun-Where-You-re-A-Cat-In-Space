@@ -7,17 +7,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHit : MonoBehaviour
 {
+    private bool _touchingHurtZone;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("DeathZone"))
+        if(other.gameObject.CompareTag("DeathZone"))
         {
-            StartCoroutine(WaterHurt());
+            _touchingHurtZone = true;
+            StartCoroutine(DeathZoneHurt());
+        }
+    }
+    
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.CompareTag("DeathZone"))
+        {
+            StopCoroutine(DeathZoneHurt());
+            _touchingHurtZone = false;
         }
     }
 
-    IEnumerator WaterHurt()
+    IEnumerator DeathZoneHurt()
     {
-        yield return new WaitForSeconds(0.5f);
-        Player.Instance.HitPlayer(5f);
+        while(_touchingHurtZone)
+        {
+            yield return new WaitForSeconds(0.5f);
+            Player.Instance.HitPlayer(5f);
+        }
     }
 }

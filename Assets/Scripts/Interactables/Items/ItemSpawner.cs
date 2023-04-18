@@ -9,7 +9,7 @@ public class ItemSpawner : MonoBehaviour
     
     private GameObject spawnItem;
     private bool spawning;
-    private bool canSpawn;
+    private bool canSpawn = true;
     
     public void InitializeSpawning()
     {
@@ -30,15 +30,14 @@ public class ItemSpawner : MonoBehaviour
 
     void SpawnItem(GameObject item)
     {
-        if (!spawnItem.activeInHierarchy && canSpawn)
+        if (!spawnItem && canSpawn)
         {
-            spawnItem = Instantiate(item, transform.position, transform.rotation);
+            spawnItem = Instantiate(item, transform.position + new Vector3(0f,0.1f,0f), transform.rotation);
             Debug.Log("spawned item" + spawnItem);
             canSpawn = false;
         }
         else
         {
-            spawnItem = null;
             canSpawn = true;
         }
     }

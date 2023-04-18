@@ -22,9 +22,11 @@ public class SoundManager : MonoBehaviour
         PlayerHurt,
         PlayerDie,
         
+        ScoreUp,
+
         PistolFire,
         ShotgunFire,
-        
+        Explode,
         
         EnemySpawn,
         EnemyHurt,
@@ -98,6 +100,7 @@ public class SoundManager : MonoBehaviour
             audioSource.maxDistance = 100f;
             audioSource.pitch += Random.Range(-0.2f, 0.2f);
             audioSource.rolloffMode = AudioRolloffMode.Linear;
+            audioSource.spatialize = true;
             audioSource.spatialBlend = 1f;
             
             audioSource.clip = GetSoundClip(sound);

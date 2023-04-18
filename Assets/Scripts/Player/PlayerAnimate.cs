@@ -28,12 +28,12 @@ public class PlayerAnimate : MonoBehaviour
             animator.SetBool("isArmed", false);
 
         }
+    }
 
-        if(Input.GetKey("f"))
-        {
-            transform.rotation = Quaternion.LookRotation(Vector3.zero);
-            animator.SetTrigger("dance");
-            SoundManager.PlayMusic(SoundManager.Music.CatJazz);
-        }
+    public void CatJazz()
+    {
+        transform.rotation = Quaternion.LookRotation(Vector3.zero);
+        animator.SetTrigger("dance");
+        SoundManager.PlayMusic(SoundManager.Music.CatJazz);
     }
 }
