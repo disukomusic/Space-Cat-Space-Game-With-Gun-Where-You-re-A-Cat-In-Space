@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5438049252350384922}
   - component: {fileID: 7405989287307828131}
   m_Layer: 0
-  m_Name: Pistol
+  m_Name: Grenade Launcher
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

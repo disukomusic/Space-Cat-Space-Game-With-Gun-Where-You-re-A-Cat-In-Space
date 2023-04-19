@@ -10,7 +10,8 @@ public class Enemy : MonoBehaviour
     public float baseHealth;
     public TMP_Text healthText;
     public EnemyNavMesh enemyNavMesh;
-
+    public GameObject deathPrefab;
+    
     private float _health;
     private Rigidbody _rigidbody;
     private Transform _mainCameraTransform;
@@ -25,33 +26,35 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            _rigidbody.AddForce(Vector3.back * 50f);
             enemyNavMesh.ChasePlayer();
             _health -= WeaponsManager.Instance.power;
             healthText.text = _health.ToString();
             
             Destroy(other.gameObject);
-            // set to false so the object pooler knows its available
-
             if (_health < 1)
             {
                 Player.Instance.IncreaseScore(100f);
                 EnemyPooler.Instance.enemyCount--;
                 SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
+
+                Instantiate(deathPrefab, transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
             }
         }
 
         if (other.gameObject.CompareTag("Explosion"))
         {
-            SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
             AlertHandler.Instance.DisplayAlert("Barrel Kill!", Color.green);
+            
             Player.Instance.IncreaseScore(200f);
             EnemyPooler.Instance.enemyCount--;
-
-            gameObject.SetActive(false);  
+            SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
+            
+            Instantiate(deathPrefab, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
         }
     }
-
     public void ResetSelf()
     {
         EnemyPooler.Instance.enemyCount++;

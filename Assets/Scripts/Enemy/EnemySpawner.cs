@@ -9,7 +9,6 @@ public class EnemySpawner : MonoBehaviour
     // goal: be an object or objects on the floor that spawn enemies
     private EnemyPooler _objectPooler;
     public GameObject enemyPrefab;
-    [SerializeField] private float waitSecondsTime;
     [SerializeField] private float subWaitSeconds;
     [SerializeField] private int howManyEnemies;
 
@@ -20,8 +19,19 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        SubscribeGameManager();
+    }
+
+    public void SubscribeGameManager()
+    {
+        GameManager.Instance.SpawnEnemies += GameManager_SpawnEnemies;
+    }
+
+    private void GameManager_SpawnEnemies(object sender, System.EventArgs e)
+    {
         StartCoroutine(SpawnAtTime());
     }
+
 
     public void SpawnEnemy()
     {
@@ -30,14 +40,10 @@ public class EnemySpawner : MonoBehaviour
 
     public IEnumerator SpawnAtTime()
     {
-        // currently spawns enemies at the spawn point after waitSecondsTime has passed,
-        // and spawns 10 enemies every subWaitSeconds.
         // todo find out how to make enemies consistently spawn if there are less active than a certain amount
         // simply checking the list's Count wouldn't work as inactive gameObjects are not removed from the list
-        yield return new WaitForSeconds(waitSecondsTime);
         for (int i = 0; i < howManyEnemies; i++)
         {
-            
             yield return new WaitForSeconds(subWaitSeconds);
             SpawnEnemy();
         }

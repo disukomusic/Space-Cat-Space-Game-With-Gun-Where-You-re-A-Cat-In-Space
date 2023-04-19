@@ -17,11 +17,12 @@ public class PlayerRotate : MonoBehaviour
         if (movement == Vector3.zero)
         {
             return;
-        }   
+        }
         
         //Rotate towards the target rotation
         Quaternion targetRotation = Quaternion.LookRotation(movement);
         targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360 * Time.deltaTime);
-        transform.rotation = targetRotation;
+       transform.rotation = targetRotation;
     }
+    
 }

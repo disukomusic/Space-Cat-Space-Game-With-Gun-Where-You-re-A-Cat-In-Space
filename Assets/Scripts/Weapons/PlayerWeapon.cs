@@ -6,11 +6,16 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private DetectMouseOver uiMouseOver;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private Transform bulletSpawnPoint;
+
+>>>>>>> Stashed changes
     private bool _canFire = true;
 
     public void Shoot(GameObject bullet)
     {
-        Instantiate(bullet, transform.position + new Vector3(0f,2f,0f), transform.rotation);
+        Instantiate(bullet, bulletSpawnPoint.position, transform.rotation);
     }
 
     private void Update()

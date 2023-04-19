@@ -19,7 +19,7 @@ public class ItemSpawner : MonoBehaviour
 
     IEnumerator spawnTimer(float delay)
     {
-        yield return new WaitForSeconds(Random.Range(0f,10f));
+        yield return new WaitForSeconds(Random.Range(0f,delay));
 
         while (spawning)
         {
@@ -32,8 +32,7 @@ public class ItemSpawner : MonoBehaviour
     {
         if (!spawnItem && canSpawn)
         {
-            spawnItem = Instantiate(item, transform.position + new Vector3(0f,0.1f,0f), transform.rotation);
-            Debug.Log("spawned item" + spawnItem);
+            spawnItem = Instantiate(item, transform.position + new Vector3(0f,1f,0f), transform.rotation);
             canSpawn = false;
         }
         else
