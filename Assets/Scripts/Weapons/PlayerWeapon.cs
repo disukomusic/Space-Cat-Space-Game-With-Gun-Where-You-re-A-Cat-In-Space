@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     [SerializeField] private DetectMouseOver uiMouseOver;
-
     private bool _canFire = true;
 
     public void Shoot(GameObject bullet)
