@@ -20,8 +20,11 @@ public class WeaponsManager : MonoBehaviour
 
     public void UnEquip(Item weapon)
     {
-        AlertHandler.Instance.DisplayAlert("Unequipped weapon: " + equippedWeapon.name, Color.magenta);
-        equippedWeapon = null;
+        if (equippedWeapon == weapon)
+        {
+            AlertHandler.Instance.DisplayAlert("Unequipped weapon: " + weapon.name, Color.magenta);
+            equippedWeapon = null;
+        }
         fireRate = 0;
         power = 0;
     }
@@ -31,7 +34,7 @@ public class WeaponsManager : MonoBehaviour
         equippedWeapon = weapon;
         bullet = weapon.bullet;
         fireRate = weapon.value;
-        power = weapon.value2;
+        power = weapon.value2 + (GameManager.Instance.wave - 1);
         
         SetBulletData();
         

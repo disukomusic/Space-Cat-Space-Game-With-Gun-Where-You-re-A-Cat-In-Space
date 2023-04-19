@@ -12,7 +12,6 @@ public class Destructable : MonoBehaviour
         {
             Explode();
         }
-
     }
 
     public void Explode()
@@ -21,5 +20,11 @@ public class Destructable : MonoBehaviour
         SoundManager.PlaySoundAtPosition(SoundManager.Sound.Explode, transform.position);
         Instantiate(destroyEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    protected IEnumerator WaitForSecondsThenExplode(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Explode();
     }
 }

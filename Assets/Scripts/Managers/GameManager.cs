@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
         Death,
     }
 
+    
+    [Range(10f, 90f)] [SerializeField] private float timeBetweenWaves;
+    
     public GameObject HUD;
     public GameObject DeathScreen;
     public TMP_Text finalScoreText;
@@ -25,6 +28,9 @@ public class GameManager : MonoBehaviour
     public event EventHandler Wave;
 
     public int wave;
+    [SerializeField] private TMP_Text waveText;
+    [SerializeField]private List<GameObject> newWaveEnemies;
+
     public int enemiesDefeated;
     
     [SerializeField] private float startingHealth;
@@ -33,11 +39,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIInventory uiInventory;
     
     [SerializeField] private List<ItemSpawner> itemSpawners;
-    
-    [SerializeField] private BarrelSpawner barrelSpawner;
+    [SerializeField] private List<EnemySpawner> enemySpawners;
 
-    
-    [SerializeField] private TMP_Text waveText;
+    public BarrelSpawner barrelSpawner;
+
     
     private Inventory inventory;
     
@@ -97,14 +102,21 @@ public class GameManager : MonoBehaviour
         while (Player.Instance.health > 0)
         {
             Wave?.Invoke(this, EventArgs.Empty);
-            AlertHandler.Instance.DisplayAlert("New wave incoming! +" + wave + " hp", Color.red);
+            AlertHandler.Instance.DisplayAlert("New wave incoming!", Color.red);
 
-            Player.Instance.IncreaseHealth(wave);
+            Player.Instance.IncreaseHealth(wave * 2f);
             Player.Instance.IncreaseScore(wave * 100);
 
             wave++;
             waveText.text = ("Wave : " + wave);
-            yield return new WaitForSeconds(Random.Range(10f, 30f));
+            if (newWaveEnemies[wave] != null)
+            {
+                foreach (EnemySpawner spawner in enemySpawners)
+                {
+                    spawner.enemyPrefab.Add(newWaveEnemies[wave]);
+                }
+            }
+            yield return new WaitForSeconds(Random.Range(timeBetweenWaves, timeBetweenWaves - 10f));
         }
     }
 }

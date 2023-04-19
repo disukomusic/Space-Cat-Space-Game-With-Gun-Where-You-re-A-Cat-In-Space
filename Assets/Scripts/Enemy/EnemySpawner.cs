@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     // goal: be an object or objects on the floor that spawn enemies
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefab;
     [SerializeField] private float subWaitSeconds;
     [SerializeField] private int howManyEnemies;
     
@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        EnemyPooler.Instance.enemyPrefab = enemyPrefab;
+        EnemyPooler.Instance.enemyPrefab.Add(enemyPrefab[Random.Range(0,enemyPrefab.Count)]);
         Enemy enemy = EnemyPooler.Instance.CreateEnemyAtPosition(transform.position);
     }
 
@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
     {
         // todo find out how to make enemies consistently spawn if there are less active than a certain amount
         // simply checking the list's Count wouldn't work as inactive gameObjects are not removed from the list
-        for (int i = 0; i < howManyEnemies; i++)
+        for (int i = 0; i < howManyEnemies + GameManager.Instance.wave; i++)
         {
             yield return new WaitForSeconds(subWaitSeconds);
             SpawnEnemy();

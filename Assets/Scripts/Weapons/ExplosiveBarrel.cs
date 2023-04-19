@@ -12,6 +12,12 @@ public class ExplosiveBarrel : Destructable
             Explode();
             other.gameObject.GetComponent<Bullet>().OnEnemyHit();
         }
-        base.OnTriggerEnter(other);
+        else
+        {
+            if (other.gameObject.CompareTag("Explosion"))
+            {
+                StartCoroutine(WaitForSecondsThenExplode(0.1f));
+            }
+        }
     }
 }
