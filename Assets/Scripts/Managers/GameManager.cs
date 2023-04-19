@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             SpawnEnemies?.Invoke(this, EventArgs.Empty);
             AlertHandler.Instance.DisplayAlert("New wave incoming!",  Color.red);
             wave++;
-            waveText.text = ("Wave:" + wave);
+            waveText.text = ("Wave : " + wave);
             yield return new WaitForSeconds(Random.Range(10f,30f));
         }
     }

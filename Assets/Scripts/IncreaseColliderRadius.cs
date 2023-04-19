@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IncreaseColliderRadius : MonoBehaviour
 {
-    public GameObject visual;
+    public GameObject collider;
     private void Awake()
     {
         StopAllCoroutines();
@@ -14,10 +14,10 @@ public class IncreaseColliderRadius : MonoBehaviour
 
     IEnumerator IncreaseSizeOfCollider()
     {
-        for(int i = 0; i < 10; i++)
+        for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.01f);
-            visual.transform.localScale += new Vector3(1f,1f,1f);
+            collider.transform.localScale += new Vector3(1f, 1f, 1f);
         }
     }
 }

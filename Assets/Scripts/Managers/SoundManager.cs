@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
 
         PistolFire,
         ShotgunFire,
+        Grenade,
         Explode,
         
         EnemySpawn,

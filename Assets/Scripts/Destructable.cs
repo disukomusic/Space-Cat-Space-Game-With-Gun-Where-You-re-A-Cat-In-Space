@@ -17,6 +17,7 @@ public class Destructable : MonoBehaviour
 
     public void Explode()
     {
+        ShakeScreen.Instance.ShakeCamera(5f,0.1f);
         SoundManager.PlaySoundAtPosition(SoundManager.Sound.Explode, transform.position);
         Instantiate(destroyEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);

@@ -15,6 +15,14 @@ public class PlayerHit : MonoBehaviour
             _touchingHurtZone = true;
             StartCoroutine(DeathZoneHurt());
         }
+        else
+        {
+            if (other.gameObject.CompareTag("Explosion"))
+            {
+                Player.Instance.HitPlayer(20f);
+            }
+        }
+        
     }
     
     private void OnTriggerExit(Collider other)

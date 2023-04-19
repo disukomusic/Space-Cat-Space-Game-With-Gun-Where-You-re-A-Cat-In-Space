@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
             _health -= WeaponsManager.Instance.power;
             healthText.text = _health.ToString();
             
-            Destroy(other.gameObject);
+            other.GetComponent<Bullet>().OnEnemyHit();
             if (_health < 1)
             {
                 Player.Instance.IncreaseScore(100f);
