@@ -7,16 +7,10 @@ using Random = UnityEngine.Random;
 public class EnemySpawner : MonoBehaviour
 {
     // goal: be an object or objects on the floor that spawn enemies
-    private EnemyPooler _objectPooler;
     public GameObject enemyPrefab;
     [SerializeField] private float subWaitSeconds;
     [SerializeField] private int howManyEnemies;
-
-    private void Awake()
-    {
-        _objectPooler = GetComponent<EnemyPooler>();
-    }
-
+    
     private void Start()
     {
         SubscribeGameManager();
@@ -24,10 +18,10 @@ public class EnemySpawner : MonoBehaviour
 
     public void SubscribeGameManager()
     {
-        GameManager.Instance.SpawnEnemies += GameManager_SpawnEnemies;
+        GameManager.Instance.Wave += GameManagerWave;
     }
 
-    private void GameManager_SpawnEnemies(object sender, System.EventArgs e)
+    private void GameManagerWave(object sender, System.EventArgs e)
     {
         StartCoroutine(SpawnAtTime());
     }
@@ -35,7 +29,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Enemy enemy = _objectPooler.CreateEnemyAtPosition(transform.position);
+        EnemyPooler.Instance.enemyPrefab = enemyPrefab;
+        Enemy enemy = EnemyPooler.Instance.CreateEnemyAtPosition(transform.position);
     }
 
     public IEnumerator SpawnAtTime()

@@ -17,14 +17,13 @@ public class PlayerHit : MonoBehaviour
         }
         else
         {
-            if (other.gameObject.CompareTag("Explosion"))
+            if (other.gameObject.CompareTag("Explosion")  && GameManager.Instance.gameState == GameManager.GameState.Gaming)
             {
                 Player.Instance.HitPlayer(20f);
             }
         }
         
     }
-    
     private void OnTriggerExit(Collider other)
     {
         if(other.gameObject.CompareTag("DeathZone"))
@@ -36,7 +35,7 @@ public class PlayerHit : MonoBehaviour
 
     IEnumerator DeathZoneHurt()
     {
-        while(_touchingHurtZone)
+        while(_touchingHurtZone  && GameManager.Instance.gameState == GameManager.GameState.Gaming)
         {
             yield return new WaitForSeconds(0.5f);
             Player.Instance.HitPlayer(5f);

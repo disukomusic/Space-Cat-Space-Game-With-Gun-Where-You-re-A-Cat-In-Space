@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
 
     public virtual void OnEnemyHit()
     {
+        Instantiate(hitEffect, transform.position, quaternion.identity);
         Destroy(gameObject);
     }
     public virtual void OnCollisionEnter(Collision other)

@@ -68,12 +68,38 @@ public class Player : MonoBehaviour
     {
         health += value;
         HealthText.text = $"HP: {health}";
+
+        if (health < 40)
+        {
+            HealthText.color = Color.yellow;
+            AlertHandler.Instance.DisplayAlert("Health Low!", Color.yellow);
+            if (health < 20)
+            {
+                AlertHandler.Instance.DisplayAlert("Health VERY Low!", Color.red);
+                HealthText.color = Color.red;
+            }
+        }
+        else
+        {
+            HealthText.color = Color.white;
+        }
     }
     
     public void DecreaseHealth(float value)
     {
         health -= value;
         HealthText.text = $"HP: {health}";
+
+        if (health < 40)
+        {
+            HealthText.color = Color.yellow;
+            AlertHandler.Instance.DisplayAlert("Health Low!", Color.yellow);
+            if (health < 20)
+            {
+                AlertHandler.Instance.DisplayAlert("Health VERY Low!", Color.red);
+                HealthText.color = Color.red;
+            }
+        }
     }
     
     public void SetScore(float value)

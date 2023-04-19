@@ -8,10 +8,24 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public enum GameState
+    {
+        Gaming,
+        Death,
+    }
+
+    public GameObject HUD;
+    public GameObject DeathScreen;
+    public TMP_Text finalScoreText;
+    public TMP_Text finalWaveText;
+    public TMP_Text finalEnemyKillCountText;
+
+    public GameState gameState;
     public static GameManager Instance;
-    public event EventHandler SpawnEnemies;
+    public event EventHandler Wave;
 
     public int wave;
+    public int enemiesDefeated;
     
     [SerializeField] private float startingHealth;
     [SerializeField] private List<Item> startingItems;
@@ -19,6 +33,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIInventory uiInventory;
     
     [SerializeField] private List<ItemSpawner> itemSpawners;
+    
+    [SerializeField] private BarrelSpawner barrelSpawner;
+
     
     [SerializeField] private TMP_Text waveText;
     
@@ -28,7 +45,11 @@ public class GameManager : MonoBehaviour
     {
         //LETS FUCKING GOOOOO
         Instance = this;
+        gameState = GameState.Gaming;
         SoundManager.Initialize();
+        
+        DeathScreen.SetActive(false);
+        HUD.SetActive(true);
         
         uiInventory.SetInventory(Inventory.Instance);
         
@@ -48,26 +69,42 @@ public class GameManager : MonoBehaviour
             spawner.InitializeSpawning();
         }
 
-        StartCoroutine(EnemySpawn());
+        StartCoroutine(WaveCoroutine());
         
         SoundManager.PlayMusic(SoundManager.Music.IdleMusic);
     }
     
     public void OnDeath()
     {
-        AlertHandler.Instance.DisplayAlert("You would have died if we implemented dying", Color.red);
+        gameState = GameState.Death;
+        StopAllCoroutines();
+
+        DeathScreen.SetActive(true);
+        HUD.SetActive(false);
+
+        EnemyPooler.Instance.KillAllEnemies();
+        
+        finalScoreText.text = Player.Instance.score.ToString();
+        finalWaveText.text = wave.ToString();
+        finalEnemyKillCountText.text = enemiesDefeated.ToString();
+        
+        Player.Instance.GetComponent<PlayerAnimate>().CatJazz();
     }
 
 
-    IEnumerator EnemySpawn()
+    IEnumerator WaveCoroutine()
     {
         while (Player.Instance.health > 0)
         {
-            SpawnEnemies?.Invoke(this, EventArgs.Empty);
-            AlertHandler.Instance.DisplayAlert("New wave incoming!",  Color.red);
+            Wave?.Invoke(this, EventArgs.Empty);
+            AlertHandler.Instance.DisplayAlert("New wave incoming! +" + wave + " hp", Color.red);
+
+            Player.Instance.IncreaseHealth(wave);
+            Player.Instance.IncreaseScore(wave * 100);
+
             wave++;
             waveText.text = ("Wave : " + wave);
-            yield return new WaitForSeconds(Random.Range(10f,30f));
+            yield return new WaitForSeconds(Random.Range(10f, 30f));
         }
     }
 }

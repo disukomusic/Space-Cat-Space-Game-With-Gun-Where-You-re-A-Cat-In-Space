@@ -24,12 +24,13 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        
-        _rigidbody.velocity = new Vector3(
-            horizontal * movementSpeed * Time.deltaTime * 2, 
-            _rigidbody.velocity.y, 
-            vertical * movementSpeed * Time.deltaTime * 2);
-        
 
+        if (GameManager.Instance.gameState == GameManager.GameState.Gaming)
+        {
+            _rigidbody.velocity = new Vector3(
+                horizontal * movementSpeed * Time.deltaTime * 2, 
+                _rigidbody.velocity.y, 
+                vertical * movementSpeed * Time.deltaTime * 2);
+        }
     }
 }

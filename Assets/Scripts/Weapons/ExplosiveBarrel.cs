@@ -10,7 +10,7 @@ public class ExplosiveBarrel : Destructable
         if (other.gameObject.CompareTag("Bullet"))
         {
             Explode();
-            Destroy(other.gameObject);
+            other.gameObject.GetComponent<Bullet>().OnEnemyHit();
         }
         base.OnTriggerEnter(other);
     }

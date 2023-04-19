@@ -128,9 +128,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f713bb76dc470ca366ed01d888c08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 0
-  fireRate: 0
+  power: 10
+  fireRate: 0.75
   speed: 10
+  hitEffect: {fileID: 6664997938809167748, guid: 32689f774faa7ff44b8f5877de2e2ebb,
+    type: 3}
   pelletCount: 10
   spreadAngle: 0
   pellet: {fileID: 7602817020412025283, guid: bc0ff06f209bc65408afe450f0bfae2c, type: 3}

@@ -4826,7 +4826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d2d5eb200a9b54b860ac0ab3e8877f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collider: {fileID: 227485498021783995}
+  _collider: {fileID: 227485498021783995}
 --- !u!1 &227485498021783995
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,7 +4840,7 @@ GameObject:
   - component: {fileID: 4101848965242384824}
   - component: {fileID: 7888181470778786551}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Smoke
   m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

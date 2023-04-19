@@ -17,7 +17,8 @@ public class PlayerWeapon : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0) && _canFire && WeaponsManager.Instance.equippedWeapon && !uiMouseOver.mouseOver)
+        //if statement from hell
+        if (Input.GetMouseButton(0) && _canFire && WeaponsManager.Instance.equippedWeapon && !uiMouseOver.mouseOver && GameManager.Instance.gameState == GameManager.GameState.Gaming)
         {
             StartCoroutine(Fire());
         }

@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class IncreaseColliderRadius : MonoBehaviour
 {
-    public GameObject collider;
+    [SerializeField] private GameObject _collider;
     private void Awake()
     {
         StopAllCoroutines();
@@ -17,7 +18,7 @@ public class IncreaseColliderRadius : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.01f);
-            collider.transform.localScale += new Vector3(1f, 1f, 1f);
+            _collider.transform.localScale += new Vector3(1f, 1f, 1f);
         }
     }
 }

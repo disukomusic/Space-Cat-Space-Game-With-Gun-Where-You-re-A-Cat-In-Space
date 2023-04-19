@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartSceneLeo.unity
     guid: 887a77a48192f2442995cba7d6efebbd
-  - enabled: 1
-    path: Assets/Scenes/IsiahScene.unity
-    guid: e72587431f71961488db008c7fb1b992
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Planet Level (Main).unity
     guid: 82081c93d8f6c2545be7ac062585b787

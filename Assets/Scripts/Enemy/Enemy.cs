@@ -34,26 +34,30 @@ public class Enemy : MonoBehaviour
             other.GetComponent<Bullet>().OnEnemyHit();
             if (_health < 1)
             {
-                Player.Instance.IncreaseScore(100f);
-                EnemyPooler.Instance.enemyCount--;
-                SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
+                Player.Instance.IncreaseScore(50f);
 
-                Instantiate(deathPrefab, transform.position, Quaternion.identity);
-                gameObject.SetActive(false);
+
+                Death();
             }
         }
 
         if (other.gameObject.CompareTag("Explosion"))
         {
-            AlertHandler.Instance.DisplayAlert("Barrel Kill!", Color.green);
+            AlertHandler.Instance.DisplayAlert("Explosion Kill! +50", Color.green);
             
-            Player.Instance.IncreaseScore(200f);
-            EnemyPooler.Instance.enemyCount--;
-            SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
-            
-            Instantiate(deathPrefab, transform.position, Quaternion.identity);
-            gameObject.SetActive(false);
+            Player.Instance.IncreaseScore(100f);
+            Death();
         }
+    }
+
+    void Death()
+    {
+        EnemyPooler.Instance.enemyCount--;
+        SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
+        
+        Instantiate(deathPrefab, transform.position, Quaternion.identity);
+        GameManager.Instance.enemiesDefeated++;
+        gameObject.SetActive(false);
     }
     public void ResetSelf()
     {

@@ -7,7 +7,7 @@ public class EnemyPooler : MonoBehaviour
 {
     public static EnemyPooler Instance;
     
-    [SerializeField] private GameObject enemyPrefab;
+    public GameObject enemyPrefab;
     public List<Enemy> objectPool;
     public float enemyCount;
 
@@ -31,9 +31,22 @@ public class EnemyPooler : MonoBehaviour
             }
         }
 
-        GameObject objectToPool = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        GameObject objectToPool = Instantiate(enemyPrefab, position, Quaternion.identity);
         Enemy newEnemy = objectToPool.GetComponent<Enemy>();
         objectPool.Add(newEnemy);
         return newEnemy;
+    }
+
+    public void KillAllEnemies()
+    {
+        foreach (var enemy in objectPool)
+        {
+            if (enemy.gameObject)
+            {
+                Destroy(enemy.gameObject);
+            }
+        }
+        objectPool.Clear();
+        
     }
 }
