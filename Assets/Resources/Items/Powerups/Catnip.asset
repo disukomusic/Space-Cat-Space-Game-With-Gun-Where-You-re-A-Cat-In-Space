@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf0d9f3ca12443b68e1296dde7d8b4e9, type: 3}
-  m_Name: Grenade Launcher
+  m_Name: Catnip
   m_EditorClassIdentifier: 
-  id: 1002
-  itemName: Grenade Launcher
-  itemDescription: 
-  value: 1.25
+  id: 3000
+  itemName: Catnip
+  itemDescription: Speed for 30 seconds!
+  value: 0
   value2: 0
-  icon: {fileID: 0}
-  itemType: 3
-  bullet: {fileID: 7602817020412025283, guid: 9c92d7a5ba69f5349b43dde703a682ce, type: 3}
+  icon: {fileID: 21300000, guid: 57ddfc3d728be4d4b9d4ed291ba6d3ed, type: 3}
+  itemType: 5
+  bullet: {fileID: 0}

@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyPooler : MonoBehaviour
 {
     public static EnemyPooler Instance;
     
-    public GameObject enemyPrefab;
+    public List<GameObject> enemyPrefab;
     public List<Enemy> objectPool;
     public float enemyCount;
 
@@ -31,9 +32,10 @@ public class EnemyPooler : MonoBehaviour
             }
         }
 
-        GameObject objectToPool = Instantiate(enemyPrefab, position, Quaternion.identity);
+        GameObject objectToPool = Instantiate(enemyPrefab[Random.Range(0,enemyPrefab.Count - 1)], position, Quaternion.identity);
         Enemy newEnemy = objectToPool.GetComponent<Enemy>();
         objectPool.Add(newEnemy);
+        enemyPrefab.Clear();
         return newEnemy;
     }
 

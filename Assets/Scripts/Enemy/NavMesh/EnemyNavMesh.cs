@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 // some of the things done in the video are already present in other places, thus I did not follow
 public class EnemyNavMesh : MonoBehaviour
 {
-    private NavMeshAgent _navMeshAgent;
+    protected NavMeshAgent _navMeshAgent;
 
     public Enemy enemy;
     public Transform player;
@@ -30,13 +30,13 @@ public class EnemyNavMesh : MonoBehaviour
     public float attackRange = 1f;
     public bool playerInSightRange, playerInAttackRange = false;
 
-    private void Awake()
+    public virtual void Awake()
     {
         player = GameObject.Find("Player").transform;
         _navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update()
+    public virtual void Update()
     {
         // check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -56,7 +56,7 @@ public class EnemyNavMesh : MonoBehaviour
         }
     }
 
-    private void Patrolling()
+    public virtual void Patrolling()
     {
         if (!_walkPointSet)
         {
@@ -76,7 +76,7 @@ public class EnemyNavMesh : MonoBehaviour
         }
     }
 
-    private void SearchWalkPoint()
+    public virtual void SearchWalkPoint()
     {
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
@@ -89,12 +89,12 @@ public class EnemyNavMesh : MonoBehaviour
         }
     }
 
-    public void ChasePlayer()
+    public virtual void ChasePlayer()
     {
         _navMeshAgent.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    public virtual void AttackPlayer()
     {
         _navMeshAgent.SetDestination(transform.position);
         

@@ -44,6 +44,12 @@ public class InventoryItemController : MonoBehaviour
                 AlertHandler.Instance.DisplayAlert(item.itemDescription, Color.cyan);
                 break;
             
+            case Item.ItemType.PowerUp:
+                AlertHandler.Instance.DisplayAlert("Activated PowerUp" + item.itemDescription, Color.magenta);
+                PowerUpsManager.Instance.ActivatePowerUp(item.itemName);
+                RemoveItem();
+                break;
+            
             case Item.ItemType.Test:
                 AlertHandler.Instance.DisplayAlert("This is a test item how the fuck did you get this", Color.cyan);
                 RemoveItem();

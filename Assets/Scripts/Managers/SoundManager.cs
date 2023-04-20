@@ -14,6 +14,13 @@ using Vector3 = UnityEngine.Vector3;
 
 public class SoundManager : MonoBehaviour
 {
+    public static SoundManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public enum Sound
     {
         CatJazz,
@@ -45,10 +52,15 @@ public class SoundManager : MonoBehaviour
     public enum Music
     {
         CatJazz,
-        FightMusic,
-        IdleMusic,
+        Wave1,
+        Wave5,
+        Wave7,
+        Wave10,
     }
     private static Dictionary<Sound, float> _soundTimerDictionary;
+    
+    private static Dictionary<Music, float> _musicVolumeDictionary;
+
     
     private static GameObject oneShotGameObject;
     private static AudioSource oneShotAudioSource;
@@ -61,6 +73,15 @@ public class SoundManager : MonoBehaviour
         {
             [Sound.EnemyDie] = 0
         };
+
+        _musicVolumeDictionary = new Dictionary<Music, float>
+        {
+            [Music.Wave1] = 0.5f,
+            [Music.Wave5] = 1f,
+            [Music.Wave7] = 1f,
+            [Music.Wave10] = 0.5f,
+        };
+
     }
 
     public static void PlayMusic(Music music)
@@ -71,6 +92,7 @@ public class SoundManager : MonoBehaviour
             musicAudioSource = musicGameObject.AddComponent<AudioSource>();
         }
         musicAudioSource.Stop();
+        musicAudioSource.volume = MusicVolume(music);
         musicAudioSource.clip = GetMusicClip(music);
         musicAudioSource.Play();
     }
@@ -110,7 +132,18 @@ public class SoundManager : MonoBehaviour
             Destroy(soundGameObject, audioSource.clip.length);
 ;        }
     }
-    
+
+    private static float MusicVolume(Music music)
+    {
+        if (_musicVolumeDictionary.ContainsKey(music))
+        {
+            return _musicVolumeDictionary[music];
+        }
+        else
+        {
+            return 0.75f;
+        }
+    }
     private static bool CanPlaySound(Sound sound)
     {
         switch (sound)
