@@ -7,7 +7,7 @@ public class PistolBullet : Bullet
 {
     public override void Awake()
     {
-        SoundManager.PlaySound(SoundManager.Sound.PistolFire);
+        SoundManager.PlaySoundAtPosition(SoundManager.Sound.PistolFire, transform.position);
         base.Awake();
     }
 }

@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
         DecreaseHealth(damage);
         //StartCoroutine(FlashColor(Color.red, 0.2f));
         
-        SoundManager.PlaySoundAtPosition(SoundManager.Sound.PlayerHurt, transform.position);
+        SoundManager.PlaySound(SoundManager.Sound.PlayerHurt);
             
         if (health < 1)
         {
-            health = 0;
+            SoundManager.PlaySound(SoundManager.Sound.PlayerDie);
             GameManager.Instance.OnDeath();
         }
     }
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
     {
         score += value;
         ScoreText.text = $"Score: {score}";
-        SoundManager.PlaySound(SoundManager.Sound.ScoreUp);
+        SoundManager.PlaySoundAtPosition(SoundManager.Sound.ScoreUp, transform.position);
     }
     public void ResetPlayerPosition()
     {

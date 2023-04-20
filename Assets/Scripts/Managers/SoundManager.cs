@@ -47,6 +47,10 @@ public class SoundManager : MonoBehaviour
         ItemPickup,
         ItemUse,
         ItemToss,
+        
+        IceBreak,
+        IceThrow,
+        Freeze
     }
 
     public enum Music
@@ -76,10 +80,10 @@ public class SoundManager : MonoBehaviour
 
         _musicVolumeDictionary = new Dictionary<Music, float>
         {
-            [Music.Wave1] = 0.5f,
-            [Music.Wave5] = 1f,
-            [Music.Wave7] = 1f,
-            [Music.Wave10] = 0.5f,
+            [Music.Wave1] = 0.25f,
+            [Music.Wave5] = 0.75f,
+            [Music.Wave7] = 0.75f,
+            [Music.Wave10] = 0.25f,
         };
 
     }
@@ -90,7 +94,10 @@ public class SoundManager : MonoBehaviour
         {
             musicGameObject = new GameObject("Music");
             musicAudioSource = musicGameObject.AddComponent<AudioSource>();
+            musicAudioSource.loop = true;
+            musicAudioSource.priority = 0;
         }
+
         musicAudioSource.Stop();
         musicAudioSource.volume = MusicVolume(music);
         musicAudioSource.clip = GetMusicClip(music);
@@ -104,6 +111,7 @@ public class SoundManager : MonoBehaviour
             {
                 oneShotGameObject = new GameObject("One Shot Sound");
                 oneShotAudioSource = oneShotGameObject.AddComponent<AudioSource>();
+                oneShotAudioSource.priority = 0;
             }
             oneShotAudioSource.volume = 0.5f;
             oneShotAudioSource.PlayOneShot(GetSoundClip(sound));
@@ -130,7 +138,7 @@ public class SoundManager : MonoBehaviour
             audioSource.Play();
 
             Destroy(soundGameObject, audioSource.clip.length);
-;        }
+        }
     }
 
     private static float MusicVolume(Music music)
@@ -141,7 +149,7 @@ public class SoundManager : MonoBehaviour
         }
         else
         {
-            return 0.75f;
+            return 0.5f;
         }
     }
     private static bool CanPlaySound(Sound sound)

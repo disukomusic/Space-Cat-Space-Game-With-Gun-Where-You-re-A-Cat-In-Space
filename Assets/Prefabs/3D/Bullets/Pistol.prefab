@@ -130,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   power: 2
   fireRate: 0.25
-  speed: 20
+  speed: 25
   hitEffect: {fileID: 6664997938809167748, guid: 2862686a85b928c4d9a32d0d71c8e099,
     type: 3}
 --- !u!135 &7405989287307828131

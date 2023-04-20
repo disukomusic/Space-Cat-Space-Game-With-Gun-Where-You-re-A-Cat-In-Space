@@ -8,9 +8,17 @@ public class EnemySpawner : MonoBehaviour
 {
     // goal: be an object or objects on the floor that spawn enemies
     public List<GameObject> enemyPrefab;
+    
     [SerializeField] private float subWaitSeconds;
     [SerializeField] private int howManyEnemies;
     
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         SubscribeGameManager();
@@ -29,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        _audioSource.Play();
         EnemyPooler.Instance.enemyPrefab.Add(enemyPrefab[Random.Range(0,enemyPrefab.Count)]);
         Enemy enemy = EnemyPooler.Instance.CreateEnemyAtPosition(transform.position);
     }

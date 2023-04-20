@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     
     public GameObject HUD;
     public GameObject DeathScreen;
+    public GameObject cheatCodes;
+    
+    
     public TMP_Text finalScoreText;
     public TMP_Text finalWaveText;
     public TMP_Text finalEnemyKillCountText;
@@ -29,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public int wave;
     [SerializeField] private TMP_Text waveText;
-    [SerializeField]private List<GameObject> newWaveEnemies;
+    [SerializeField] private List<GameObject> newWaveEnemies;
 
     public int enemiesDefeated;
     
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private List<ItemSpawner> itemSpawners;
     [SerializeField] private List<EnemySpawner> enemySpawners;
+    [SerializeField] private List<Teleporter> teleporters;
+
 
     public BarrelSpawner barrelSpawner;
 
@@ -55,6 +60,8 @@ public class GameManager : MonoBehaviour
         
         DeathScreen.SetActive(false);
         HUD.SetActive(true);
+        cheatCodes.SetActive(false);
+
         
         uiInventory.SetInventory(Inventory.Instance);
         
@@ -74,27 +81,29 @@ public class GameManager : MonoBehaviour
             spawner.InitializeSpawning();
         }
 
+        foreach (Teleporter teleporter in teleporters)
+        {
+            teleporter.gameObject.SetActive(false);
+        }
+
         StartCoroutine(WaveCoroutine());
     }
-    
-    public void OnDeath()
+
+    private void Update()
     {
-        gameState = GameState.Death;
-        StopAllCoroutines();
-
-        DeathScreen.SetActive(true);
-        HUD.SetActive(false);
-
-        EnemyPooler.Instance.KillAllEnemies();
-        
-        finalScoreText.text = Player.Instance.score.ToString();
-        finalWaveText.text = wave.ToString();
-        finalEnemyKillCountText.text = enemiesDefeated.ToString();
-        
-        Player.Instance.GetComponent<PlayerAnimate>().CatJazz();
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            if (cheatCodes.activeInHierarchy)
+            {
+                cheatCodes.SetActive(false);
+            }
+            else
+            {
+                cheatCodes.SetActive(true);
+            }
+        }    
     }
-
-
+    
     IEnumerator WaveCoroutine()
     {
         while (Player.Instance.health > 0)
@@ -104,6 +113,8 @@ public class GameManager : MonoBehaviour
 
             if (wave == 1)
             {
+                EnableTeleporters();
+
                 SoundManager.PlayMusic(SoundManager.Music.Wave1);
             }
             else if (wave == 5)
@@ -124,9 +135,7 @@ public class GameManager : MonoBehaviour
 
             Player.Instance.IncreaseHealth(wave * 5f);
             Player.Instance.IncreaseScore(wave * 100);
-
-
-  
+            
                 if (newWaveEnemies[wave] != null)
                 {
                     foreach (EnemySpawner spawner in enemySpawners)
@@ -136,14 +145,37 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    //this is so stupid do not ever do this 
-                    //the null check is not working and i want to die
+                    //apparently checking for null doesn't work if the null is... null?
+                    //there is no slot for a gameobject on the next index sooooo we add one :) [agony]
                     newWaveEnemies.Add(null);
+                    //this is so stupid do not ever do this 
                 }
+                yield return new WaitForSeconds(timeBetweenWaves);
+        }
+    }
+    public void OnDeath()
+    {
+        gameState = GameState.Death;
+        StopAllCoroutines();
 
-                //yield return new WaitForSeconds(Random.Range(timeBetweenWaves, timeBetweenWaves - 10f));
-            yield return new WaitForSeconds(timeBetweenWaves);
+        DeathScreen.SetActive(true);
+        HUD.SetActive(false);
 
+        EnemyPooler.Instance.KillAllEnemies();
+        
+        finalScoreText.text = Player.Instance.score.ToString();
+        finalWaveText.text = wave.ToString();
+        finalEnemyKillCountText.text = enemiesDefeated.ToString();
+        
+        Player.Instance.GetComponent<PlayerAnimate>().CatJazz();
+    }
+
+    void EnableTeleporters()
+    {
+        foreach (Teleporter teleporter in teleporters)
+        {
+            teleporter.gameObject.SetActive(true);
+            AlertHandler.Instance.DisplayAlert("Teleporters Active!", Color.green);
         }
     }
 }

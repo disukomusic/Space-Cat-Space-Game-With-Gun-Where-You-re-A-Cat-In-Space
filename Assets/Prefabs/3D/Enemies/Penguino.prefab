@@ -196,10 +196,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4780401246831827070}
   - component: {fileID: 3315048788373255647}
-  - component: {fileID: 9138613328722783121}
   m_Layer: 0
   m_Name: Thrower
-  m_TagString: Untagged
+  m_TagString: Ignore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +211,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3544749689719806792}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.15, z: 1.11}
+  m_LocalPosition: {x: 0, y: 1.15, z: 0.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -233,19 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icePrefab: {fileID: 6837922004643170863, guid: a3ca2cb4420ee9e4bb684f3470ca080d,
     type: 3}
---- !u!135 &9138613328722783121
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3544749689719806792}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 8.6
-  m_Center: {x: 0, y: 0, z: 0}
+  WaitTime: 0
 --- !u!1 &4404658540711259537
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7941797844973158889}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4404658540711259537}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -295,7 +282,7 @@ GameObject:
   - component: {fileID: 7569338513353974441}
   m_Layer: 0
   m_Name: Penguino
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +323,7 @@ MonoBehaviour:
   deathDelay: 0
   healthText: {fileID: 9138014498317999140}
   enemyNavMesh: {fileID: 3941357719103176892}
-  deathPrefab: {fileID: 5192373726333067544, guid: 95f610ce4137f4746b71e6fe403c2e90,
+  deathPrefab: {fileID: 5192373726333067544, guid: 166a51f5eacc376419af745f665b7afc,
     type: 3}
 --- !u!114 &3941357719103176892
 MonoBehaviour:
@@ -412,9 +399,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.01
-  m_Height: 2.9039607
+  m_Height: 2.8789935
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6216885, z: 0}
+  m_Center: {x: 0, y: 0.6092005, z: 0}
 --- !u!54 &7569338513353974441
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -425,7 +412,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.01
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0

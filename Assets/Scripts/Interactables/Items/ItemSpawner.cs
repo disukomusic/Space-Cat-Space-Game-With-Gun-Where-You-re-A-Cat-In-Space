@@ -6,7 +6,7 @@ public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] float timeBetweenSpawns;
     [SerializeField] List<GameObject> spawnItems;
-    
+
     private GameObject spawnItem;
     private bool spawning;
     private bool canSpawn = true;
@@ -14,17 +14,17 @@ public class ItemSpawner : MonoBehaviour
     public void InitializeSpawning()
     {
         spawning = true;
-        StartCoroutine(spawnTimer(timeBetweenSpawns));
+        StartCoroutine(SpawnTimer(timeBetweenSpawns));
     }
 
-    IEnumerator spawnTimer(float delay)
+    IEnumerator SpawnTimer(float delay)
     {
         yield return new WaitForSeconds(Random.Range(0f,delay));
 
         while (spawning)
         {
-            yield return new WaitForSeconds(delay);
             SpawnItem(spawnItems[Random.Range(0, spawnItems.Count)]);
+            yield return new WaitForSeconds(delay + Random.Range(-5f,5f));
         }
     }
 

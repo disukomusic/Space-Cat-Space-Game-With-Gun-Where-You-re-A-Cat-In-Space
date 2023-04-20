@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
+            SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyHurt, transform.position);
             _rigidbody.AddForce(Vector3.back * 50f);
             enemyNavMesh.ChasePlayer();
             _health -= WeaponsManager.Instance.power;
@@ -36,16 +37,14 @@ public class Enemy : MonoBehaviour
             other.GetComponent<Bullet>().OnEnemyHit();
             if (_health < 1)
             {
-                Player.Instance.IncreaseScore(pointValue);
-
-
                 Death();
             }
         }
 
         if (other.gameObject.CompareTag("Explosion"))
         {
-            
+            SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyHurt, transform.position);
+            _health -= 10;
             if (_health < 1)
             {
                 Player.Instance.IncreaseScore(pointValue + 50f);
@@ -53,12 +52,13 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(DeathAfterDelay(deathDelay));
 
             }
-            _health -= 10;
         }
     }
 
     void Death()
     {
+        Player.Instance.IncreaseScore(pointValue);
+        
         EnemyPooler.Instance.enemyCount--;
         SoundManager.PlaySoundAtPosition(SoundManager.Sound.EnemyDie, transform.position);
         

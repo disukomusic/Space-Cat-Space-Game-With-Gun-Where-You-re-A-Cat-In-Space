@@ -4,14 +4,9 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class Animate : MonoBehaviour
+public class MyPeopleNeedMe : MonoBehaviour
 {
     private void Awake()
-    {
-        MyPeopleNeedMe();
-    }
-
-    public void MyPeopleNeedMe()
     {
         GetComponent<Rigidbody>().AddForce(Vector3.up * 2000f);
         

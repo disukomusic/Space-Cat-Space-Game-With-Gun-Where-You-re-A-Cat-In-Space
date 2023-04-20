@@ -7,7 +7,7 @@ public class Grenade : Bullet
 {
     public override void Awake()
     {
-        SoundManager.PlaySound(SoundManager.Sound.Grenade);
+        SoundManager.PlaySoundAtPosition(SoundManager.Sound.Grenade, transform.position);
         base.Awake();
     }
     

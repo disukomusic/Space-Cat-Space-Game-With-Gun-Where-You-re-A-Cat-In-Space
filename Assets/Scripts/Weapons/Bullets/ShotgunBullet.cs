@@ -16,7 +16,7 @@ public class ShotgunBullet : Bullet
     private List<Quaternion> pellets;
     public override void Awake()
     {
-        SoundManager.PlaySound(SoundManager.Sound.ShotgunFire);
+        SoundManager.PlaySoundAtPosition(SoundManager.Sound.ShotgunFire, transform.position);
         
         //todo:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHH
         // pellets = new List<Quaternion>(pelletCount);
