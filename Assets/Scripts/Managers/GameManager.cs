@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-    [Range(10f, 90f)] [SerializeField] private float timeBetweenWaves;
+    [SerializeField] private float timeBetweenWaves;
     
     public GameObject HUD;
     public GameObject DeathScreen;
@@ -75,8 +75,6 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(WaveCoroutine());
-        
-        SoundManager.PlayMusic(SoundManager.Music.IdleMusic);
     }
     
     public void OnDeath()
@@ -101,22 +99,51 @@ public class GameManager : MonoBehaviour
     {
         while (Player.Instance.health > 0)
         {
+            wave++;
+            waveText.text = ("Wave : " + wave);
+
+            if (wave == 1)
+            {
+                SoundManager.PlayMusic(SoundManager.Music.Wave1);
+            }
+            else if (wave == 5)
+            {
+                SoundManager.PlayMusic(SoundManager.Music.Wave5);
+            }
+            else if (wave == 7)
+            {
+                SoundManager.PlayMusic(SoundManager.Music.Wave7);
+            }
+            else if (wave == 10)
+            {
+                SoundManager.PlayMusic(SoundManager.Music.Wave10);
+            }
+            
             Wave?.Invoke(this, EventArgs.Empty);
             AlertHandler.Instance.DisplayAlert("New wave incoming!", Color.red);
 
-            Player.Instance.IncreaseHealth(wave * 2f);
+            Player.Instance.IncreaseHealth(wave * 5f);
             Player.Instance.IncreaseScore(wave * 100);
 
-            wave++;
-            waveText.text = ("Wave : " + wave);
-            if (newWaveEnemies[wave] != null)
-            {
-                foreach (EnemySpawner spawner in enemySpawners)
+
+  
+                if (newWaveEnemies[wave] != null)
                 {
-                    spawner.enemyPrefab.Add(newWaveEnemies[wave]);
+                    foreach (EnemySpawner spawner in enemySpawners)
+                    {
+                        spawner.enemyPrefab.Add(newWaveEnemies[wave]);
+                    }
                 }
-            }
-            yield return new WaitForSeconds(Random.Range(timeBetweenWaves, timeBetweenWaves - 10f));
+                else
+                {
+                    //this is so stupid do not ever do this 
+                    //the null check is not working and i want to die
+                    newWaveEnemies.Add(null);
+                }
+
+                //yield return new WaitForSeconds(Random.Range(timeBetweenWaves, timeBetweenWaves - 10f));
+            yield return new WaitForSeconds(timeBetweenWaves);
+
         }
     }
 }

@@ -237,9 +237,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50a983475d3c364c8c35a11a9a5ea6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 5
   baseHealth: 10
   pointValue: 50
+  deathDelay: 0
   healthText: {fileID: 9138014498317999140}
   enemyNavMesh: {fileID: 3941357719103176892}
   deathPrefab: {fileID: 5192373726333067544, guid: 95f610ce4137f4746b71e6fe403c2e90,

@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c50a983475d3c364c8c35a11a9a5ea6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   baseHealth: 60
   pointValue: 150
   deathDelay: 0.1
